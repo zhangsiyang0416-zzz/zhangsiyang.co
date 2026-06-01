@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zhang Siyang | Personal Archive</title>
-    <meta name="description" content="Zhang Siyang 的个人网站：经历、简历、作品、旅行与生活照片。">
-    <meta property="og:title" content="Zhang Siyang | Personal Archive">
-    <meta property="og:description" content="一个关于经历、作品、旅行和生活的个人档案。">
+    <title>Zhang Siyang | Personal Operating System</title>
+    <meta name="description" content="Zhang Siyang 的个人网站：经历、简历、作品、旅行和生活影像。">
+    <meta property="og:title" content="Zhang Siyang | Personal Operating System">
+    <meta property="og:description" content="一个关于经历、作品、旅行和生活的个人档案系统。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zhangsiyang.co/">
-    <meta name="theme-color" content="#0e1116">
+    <meta name="theme-color" content="#0608ff">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body class="is-starting">
     <div class="cursor" aria-hidden="true"></div>
     <div class="progress" aria-hidden="true"><span></span></div>
 
@@ -25,42 +25,65 @@
       <nav aria-label="主导航">
         <a href="#story">经历</a>
         <a href="#work">项目</a>
-        <a href="#atlas">相册</a>
+        <a href="#atlas">照片</a>
         <a href="#resume">简历</a>
         <a href="#contact">联系</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-art-noise"></div>
+        </div>
+
         <div class="hero-copy" data-reveal>
-          <p class="kicker">Personal site / travel archive / builder log</p>
-          <h1>
-            Zhang<br>
-            Siyang
-          </h1>
+          <p class="kicker">Personal operating system / travel archive / resume lab</p>
+          <h1 id="hero-title">Zhang<br>Siyang</h1>
           <p class="hero-lead">
-            一个正在被搭建的个人档案：把经历、项目、简历、旅行和生活照片，变成一个别人能真正看懂你的地方。
+            一个正在启动的个人世界：把经历、项目、简历、旅行照片和生活片段，整理成别人一眼就能进入的档案系统。
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#atlas">先看相册框架</a>
-            <a class="button ghost" href="#resume">看简历结构</a>
+            <button class="button primary" type="button" id="bootButton">开机进入</button>
+            <a class="button ghost" href="#atlas">先看照片墙</a>
           </div>
         </div>
 
-        <div class="hero-stage" aria-label="个人影像墙" data-reveal>
-          <div class="orbit-ring"></div>
-          <figure class="hero-photo hero-photo-main photo-frame" data-src="assets/photos/hero.jpg">
-            <span>hero.jpg</span>
-          </figure>
-          <figure class="hero-photo hero-photo-a photo-frame" data-src="assets/photos/city.jpg">
-            <span>city.jpg</span>
-          </figure>
-          <figure class="hero-photo hero-photo-b photo-frame" data-src="assets/photos/life.jpg">
-            <span>life.jpg</span>
-          </figure>
-          <div class="status-chip top">LIVE SOON</div>
-          <div class="status-chip bottom">ZHANGSIYANG.CO</div>
+        <div class="desktop-shell" data-reveal>
+          <div class="desktop-topbar">
+            <span>ZHANGSIYANG_OS</span>
+            <span class="signal">LIVE</span>
+          </div>
+          <div class="terminal-window" aria-live="polite">
+            <div class="window-title">
+              <span>BOOT_SEQUENCE.log</span>
+              <span>01</span>
+            </div>
+            <div class="terminal-lines">
+              <p>&gt; loading story modules...</p>
+              <p>&gt; mounting resume archive...</p>
+              <p>&gt; scanning travel photos...</p>
+              <p class="terminal-ready">ready: zhangsiyang.co</p>
+            </div>
+          </div>
+          <div class="app-grid" aria-label="网站模块">
+            <button class="app-icon" type="button" data-target="#story">
+              <span>01</span>
+              <strong>Story</strong>
+            </button>
+            <button class="app-icon" type="button" data-target="#work">
+              <span>02</span>
+              <strong>Work</strong>
+            </button>
+            <button class="app-icon accent" type="button" data-target="#atlas">
+              <span>03</span>
+              <strong>Photos</strong>
+            </button>
+            <button class="app-icon warm" type="button" data-target="#resume">
+              <span>04</span>
+              <strong>Resume</strong>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -68,121 +91,126 @@
         <div>
           <span>experience</span>
           <span>portfolio</span>
-          <span>travel photos</span>
+          <span>travel archive</span>
           <span>resume</span>
-          <span>life archive</span>
-          <span>future projects</span>
+          <span>life photos</span>
+          <span>builder log</span>
+          <span>experience</span>
+          <span>portfolio</span>
+          <span>travel archive</span>
+          <span>resume</span>
+          <span>life photos</span>
+          <span>builder log</span>
         </div>
       </section>
 
       <section id="story" class="section story-grid">
         <div class="section-label" data-reveal>
           <p class="kicker">01 / Story</p>
-          <h2>先让别人知道，你是谁。</h2>
+          <h2>先让别人记住你。</h2>
         </div>
         <div class="story-copy" data-reveal>
           <p>
-            这里会写你的个人经历：你从哪里来、做过什么、正在往哪里走。第一版先用结构占位，等你把简历和经历发给我，我会把它改成真正属于你的叙事。
+            这里会写你的个人经历：你从哪里来，做过什么，正在往哪里走。第一版先保留结构，等你把经历和简历材料发来，我会把它写成真正属于你的叙事。
           </p>
           <div class="fact-grid">
             <article>
-              <span>当前身份</span>
+              <span>Current mode</span>
               <strong>Builder / Explorer</strong>
             </article>
             <article>
-              <span>网站目标</span>
-              <strong>让人 60 秒内认识你</strong>
+              <span>Website goal</span>
+              <strong>60 秒认识你</strong>
             </article>
             <article>
-              <span>内容方向</span>
-              <strong>经历、项目、旅行、生活</strong>
+              <span>Archive</span>
+              <strong>经历、项目、照片、生活</strong>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="timeline section">
-        <div class="section-label" data-reveal>
+      <section class="section timeline">
+        <div class="section-label wide" data-reveal>
           <p class="kicker">02 / Timeline</p>
-          <h2>经历时间线</h2>
+          <h2>人生不是一张表，是一条可展开的线。</h2>
         </div>
         <div class="timeline-list">
           <article data-reveal>
             <span class="year">2026</span>
             <div>
-              <h3>个人网站上线</h3>
-              <p>把 zhangsiyang.co 变成你的公开主页，先上线框架，再持续填入作品和照片。</p>
+              <h3>zhangsiyang.co 上线</h3>
+              <p>第一版先把入口、结构和风格打好，后面继续把真实经历、作品和照片装进去。</p>
             </div>
           </article>
           <article data-reveal>
             <span class="year">2025</span>
             <div>
-              <h3>个人经历 / 简历节点</h3>
-              <p>这里放你的学习、工作、项目或重要转折。后续我会帮你写成更有力量的版本。</p>
+              <h3>经历与项目节点</h3>
+              <p>这里放学习、工作、项目、课程、竞赛或任何值得被看到的转折。</p>
             </div>
           </article>
           <article data-reveal>
             <span class="year">Past</span>
             <div>
-              <h3>旅行与生活 archive</h3>
-              <p>把很多照片整理成有节奏的故事，而不是普通网盘相册。</p>
+              <h3>旅行和生活档案</h3>
+              <p>把大量照片变成有节奏的视觉故事，而不是普通网盘相册。</p>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="work" class="section">
+      <section id="work" class="section work-section">
         <div class="section-label wide" data-reveal>
           <p class="kicker">03 / Work</p>
-          <h2>项目与作品</h2>
-          <p>先放三个位置。以后可以扩展成项目详情页、视频、文章、PDF 简历下载。</p>
+          <h2>项目先占位，气质先到位。</h2>
+          <p>以后这里可以扩展成项目详情页、视频、文章、作品集 PDF、课程作业或创业记录。</p>
         </div>
         <div class="work-grid">
-          <a class="work-card tall" href="#contact" data-reveal>
+          <article class="work-card tall" data-reveal>
             <span class="tag">Website</span>
-            <h3>zhangsiyang.co</h3>
-            <p>第一个公开个人网站，用来承载你的经历、照片和长期作品。</p>
-            <span class="arrow">↗</span>
-          </a>
-          <a class="work-card" href="#resume" data-reveal>
+            <h3>Personal OS</h3>
+            <p>你的公开主页，不只是简历，而是一个持续更新的个人系统。</p>
+            <a href="#contact" aria-label="联系">↗</a>
+          </article>
+          <article class="work-card" data-reveal>
             <span class="tag red">Resume</span>
-            <h3>个人简历系统</h3>
-            <p>把简历从一张 PDF，升级成网页中的可阅读故事。</p>
-            <span class="arrow">↗</span>
-          </a>
-          <a class="work-card" href="#atlas" data-reveal>
-            <span class="tag gold">Photo</span>
-            <h3>旅行影像地图</h3>
-            <p>按城市、年份、情绪整理照片。先有框架，再慢慢塞满。</p>
-            <span class="arrow">↗</span>
-          </a>
+            <h3>Web Resume</h3>
+            <p>把 PDF 简历升级成网页里的经历叙事，适合发给导师、朋友、合作方或招聘方。</p>
+            <a href="#resume" aria-label="查看简历">↗</a>
+          </article>
+          <article class="work-card" data-reveal>
+            <span class="tag gold">Travel</span>
+            <h3>Photo Atlas</h3>
+            <p>按城市、年份、人物、情绪整理照片，最后变成你的生活地图。</p>
+            <a href="#atlas" aria-label="查看照片">↗</a>
+          </article>
         </div>
       </section>
 
       <section id="atlas" class="atlas">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">04 / Atlas</p>
-          <h2>旅行和生活照片，会放在这里。</h2>
+          <p class="kicker">04 / Photo Atlas</p>
+          <h2>旅行和生活照片，会变成这里最炸的部分。</h2>
           <p>
-            现在是占位效果。以后你把照片放进 <code>assets/photos</code>，文件名对上，我就能把这里变成真实相册。
+            现在先做视觉框架。之后你把照片素材给我，我会把占位图替换成真实相册，按旅行、生活、城市和朋友分组。
           </p>
         </div>
-
-        <div class="photo-grid">
+        <div class="photo-wall">
           <figure class="photo-tile large photo-frame" data-src="assets/photos/travel-01.jpg" data-reveal>
-            <figcaption>travel-01.jpg / 旅行封面</figcaption>
+            <figcaption>TRAVEL / cover</figcaption>
           </figure>
           <figure class="photo-tile photo-frame" data-src="assets/photos/life-01.jpg" data-reveal>
-            <figcaption>life-01.jpg / 生活瞬间</figcaption>
+            <figcaption>LIFE / moments</figcaption>
           </figure>
           <figure class="photo-tile tall photo-frame" data-src="assets/photos/city-01.jpg" data-reveal>
-            <figcaption>city-01.jpg / 城市</figcaption>
+            <figcaption>CITY / map</figcaption>
           </figure>
           <figure class="photo-tile photo-frame" data-src="assets/photos/food-01.jpg" data-reveal>
-            <figcaption>food-01.jpg / 餐桌</figcaption>
+            <figcaption>TABLE / food</figcaption>
           </figure>
           <figure class="photo-tile wide photo-frame" data-src="assets/photos/friends-01.jpg" data-reveal>
-            <figcaption>friends-01.jpg / 朋友</figcaption>
+            <figcaption>PEOPLE / friends</figcaption>
           </figure>
         </div>
       </section>
@@ -190,14 +218,14 @@
       <section id="resume" class="section resume">
         <div class="section-label" data-reveal>
           <p class="kicker">05 / Resume</p>
-          <h2>简历不只是 PDF。</h2>
+          <h2>简历入口，先搭好。</h2>
         </div>
         <div class="resume-panel" data-reveal>
           <div class="resume-intro">
             <p>
-              这里会变成你的简历入口：教育背景、工作经历、项目经历、技能、获奖、联系方式。你给我原始材料，我会帮你整理成网页版和 PDF 版两套。
+              这里会变成你的简历系统：教育背景、工作经历、项目经历、技能、奖项、证书和下载入口。等你给我真实材料，我会同时整理网页版和 PDF 下载版。
             </p>
-            <a class="button primary" href="assets/resume/README.md">查看简历占位说明</a>
+            <a class="button primary" href="assets/resume/README.md">查看简历素材位</a>
           </div>
           <dl class="resume-list">
             <div>
@@ -219,10 +247,8 @@
       <section id="contact" class="contact">
         <div data-reveal>
           <p class="kicker">06 / Contact</p>
-          <h2>下一步，把真实的你放进去。</h2>
-          <p>
-            发我你的个人经历、简历、照片文件夹，我就能继续把这个框架变成完整版。
-          </p>
+          <h2>下一步，把真实内容塞进去。</h2>
+          <p>把你的经历、简历、照片文件夹发来，我就能继续把这个框架变成完整版。</p>
         </div>
         <div class="contact-actions" data-reveal>
           <button class="button primary" type="button" id="copyDomain">复制域名</button>

@@ -1,7 +1,9 @@
 const root = document.documentElement;
+const body = document.body;
 const cursor = document.querySelector(".cursor");
 const progressBar = document.querySelector(".progress span");
 const copyDomain = document.querySelector("#copyDomain");
+const bootButton = document.querySelector("#bootButton");
 
 function setSpotlight(event) {
   const x = `${event.clientX}px`;
@@ -17,7 +19,9 @@ function setSpotlight(event) {
 function updateProgress() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const ratio = max > 0 ? window.scrollY / max : 0;
-  progressBar.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+  if (progressBar) {
+    progressBar.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+  }
 }
 
 function toast(message) {
@@ -35,7 +39,7 @@ function loadPhotoFrames() {
     const src = frame.getAttribute("data-src");
     const image = new Image();
     image.onload = () => {
-      frame.style.backgroundImage = `linear-gradient(transparent 0 58%, rgba(0,0,0,.72)), url("${src}")`;
+      frame.style.backgroundImage = `linear-gradient(transparent 0 60%, rgba(0,0,0,.76)), url("${src}")`;
       frame.classList.add("has-image");
     };
     image.src = src;
@@ -57,6 +61,23 @@ document.addEventListener("pointermove", setSpotlight);
 document.querySelectorAll("a, button").forEach((item) => {
   item.addEventListener("pointerenter", () => cursor?.classList.add("is-active"));
   item.addEventListener("pointerleave", () => cursor?.classList.remove("is-active"));
+});
+
+document.querySelectorAll("[data-target]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const target = document.querySelector(button.getAttribute("data-target"));
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+bootButton?.addEventListener("click", () => {
+  body.classList.remove("is-starting");
+  body.classList.add("is-awake");
+  bootButton.textContent = "系统已启动";
+  toast("zhangsiyang.co 已启动");
+  window.setTimeout(() => {
+    document.querySelector("#story")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 520);
 });
 
 window.addEventListener("scroll", updateProgress, { passive: true });
