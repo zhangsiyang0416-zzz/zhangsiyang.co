@@ -8,13 +8,13 @@ const bootScreen = document.querySelector("#bootScreen");
 const bootProgress = document.querySelector("#bootProgress");
 const bootStatus = document.querySelector("#bootStatus");
 const enterSite = document.querySelector("#enterSite");
-const helloWords = [...document.querySelectorAll(".hello-word")];
+const helloSlides = [...document.querySelectorAll(".hello-slide")];
 const helloSequence = [
-  { label: "English", status: "English / waking personal OS" },
-  { label: "中文", status: "中文 / 正在启动个人世界" },
-  { label: "Español", status: "Español / cargando archivo vital" },
-  { label: "日本語", status: "日本語 / 旅と履歴を同期中" },
-  { label: "한국어", status: "한국어 / 개인 OS 준비 완료" }
+  { label: "English", status: "English / handwriting hello", hold: 2400 },
+  { label: "中文", status: "中文 / 正在写入个人世界", hold: 2300 },
+  { label: "Español", status: "Español / escribiendo hola", hold: 2400 },
+  { label: "日本語", status: "日本語 / こんにちはを書いています", hold: 3400 },
+  { label: "한국어", status: "한국어 / 안녕하세요 쓰는 중", hold: 3300 }
 ];
 
 function setSpotlight(event) {
@@ -72,32 +72,58 @@ function runBootIntro() {
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let index = 0;
+  let timer = 0;
+
+  function restartHelloSlide(slide) {
+    if (!slide) return;
+
+    const animatedParts = slide.querySelectorAll(".handwritten-word");
+    animatedParts.forEach((part) => {
+      part.style.animation = "none";
+    });
+    slide.style.setProperty("--restart", Date.now());
+
+    void slide.getBoundingClientRect();
+
+    animatedParts.forEach((part) => {
+      part.style.animation = "";
+    });
+    slide.classList.add("is-active");
+  }
 
   function showHello(nextIndex) {
-    index = Math.min(nextIndex, helloSequence.length - 1);
-    helloWords.forEach((word, wordIndex) => {
-      word.classList.toggle("is-active", wordIndex === index);
-    });
+    const slideCount = Math.max(helloSlides.length, helloSequence.length);
+    index = Math.min(nextIndex, slideCount - 1);
 
-    const progress = Math.round(((index + 1) / helloSequence.length) * 100);
+    helloSlides.forEach((slide) => {
+      slide.classList.remove("is-active");
+    });
+    restartHelloSlide(helloSlides[index]);
+
+    const progress = Math.round(((index + 1) / slideCount) * 100);
     updateBootScreen(progress);
 
     if (bootStatus) {
-      bootStatus.textContent = helloSequence[index].status;
+      bootStatus.textContent = helloSequence[index]?.status || "hello / handwriting sequence";
     }
 
-    if (index === helloSequence.length - 1) {
-      window.clearInterval(timer);
+    if (index === slideCount - 1) {
+      window.clearTimeout(timer);
       window.setTimeout(() => {
         if (bootStatus) bootStatus.textContent = "你好，欢迎进入 zhangsiyang.co";
         enterSite.disabled = false;
         enterSite.focus({ preventScroll: true });
-      }, reducedMotion ? 100 : 620);
+      }, reducedMotion ? 120 : (helloSequence[index]?.hold || 1800));
+      return;
     }
+
+    timer = window.setTimeout(
+      () => showHello(index + 1),
+      reducedMotion ? 180 : (helloSequence[index]?.hold || 2200)
+    );
   }
 
   showHello(0);
-  const timer = window.setInterval(() => showHello(index + 1), reducedMotion ? 140 : 980);
 
   enterSite.addEventListener("click", releaseBootScreen);
   document.addEventListener("keydown", (event) => {

@@ -11,19 +11,141 @@
     <meta property="og:url" content="https://zhangsiyang.co/">
     <meta name="theme-color" content="#0608ff">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Nanum+Pen+Script&family=Pacifico&family=Yomogi&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body class="is-starting boot-locked">
     <section class="boot-screen" id="bootScreen" aria-labelledby="bootTitle">
       <div class="boot-grid" aria-hidden="true"></div>
       <div class="boot-card hello-boot">
-        <p class="boot-kicker">zhangsiyang.co / hello sequence</p>
+        <p class="boot-kicker">zhangsiyang.co / handwritten hello sequence</p>
         <div class="hello-stage" aria-live="polite">
-          <span class="hello-word is-active" data-lang="English">Hello</span>
-          <span class="hello-word" data-lang="Chinese">你好</span>
-          <span class="hello-word" data-lang="Spanish">Hola</span>
-          <span class="hello-word" data-lang="Japanese">こんにちは</span>
-          <span class="hello-word" data-lang="Korean">안녕하세요</span>
+          <div class="hello-slide is-active" data-lang="English" style="--write-ms: 1700ms; --pen-y: 45%;">
+            <span class="handwritten-word latin-word" aria-label="hello">hello</span>
+          </div>
+          <div class="hello-slide" data-lang="Chinese" style="--write-ms: 1600ms; --pen-y: 48%;">
+            <span class="handwritten-word cjk-word chinese-word" aria-label="你好">你好</span>
+          </div>
+          <div class="hello-slide" data-lang="Spanish" style="--write-ms: 1700ms; --pen-y: 45%;">
+            <span class="handwritten-word latin-word spanish-word" aria-label="Hola">Hola</span>
+          </div>
+          <div class="hello-slide" data-lang="Japanese" style="--write-ms: 2000ms; --pen-y: 47%;">
+            <span class="handwritten-word cjk-word kana-word" aria-label="こんにちは">こんにちは</span>
+          </div>
+          <div class="hello-slide" data-lang="Korean" style="--write-ms: 2100ms; --pen-y: 47%;">
+            <span class="handwritten-word cjk-word hangul-word" aria-label="안녕하세요">안녕하세요</span>
+          </div>
+
+          <svg class="hello-svg is-active latin-svg" data-lang="English" viewBox="0 0 1000 320" role="img" aria-label="hello">
+            <defs>
+              <linearGradient id="ink-en" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#baff29" />
+                <stop offset="42%" stop-color="#48f4ff" />
+                <stop offset="72%" stop-color="#ff42d6" />
+                <stop offset="100%" stop-color="#ffd36e" />
+              </linearGradient>
+            </defs>
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 0ms" stroke="url(#ink-en)" d="M125 232 C157 173 172 64 133 66 C96 68 95 157 111 202 C126 244 163 226 184 190 C205 153 239 143 254 169 C269 195 251 229 223 229" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 280ms" stroke="url(#ink-en)" d="M310 181 C361 177 374 142 337 135 C304 129 276 153 276 187 C276 228 330 237 376 202" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 520ms" stroke="url(#ink-en)" d="M438 222 C474 166 489 69 452 64 C420 60 410 129 419 181 C429 235 466 235 495 203" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 780ms" stroke="url(#ink-en)" d="M555 222 C592 166 606 69 570 64 C538 60 528 129 538 181 C548 235 585 235 615 203" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 1060ms" stroke="url(#ink-en)" d="M682 145 C728 127 775 154 774 197 C773 239 715 249 684 215 C655 184 668 153 701 140 C739 124 785 145 804 181 C821 213 848 216 879 190" />
+          </svg>
+
+          <svg class="hello-svg cjk-svg" data-lang="Chinese" viewBox="0 0 900 320" role="img" aria-label="你好">
+            <defs>
+              <linearGradient id="ink-cn" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#baff29" />
+                <stop offset="42%" stop-color="#48f4ff" />
+                <stop offset="72%" stop-color="#ff42d6" />
+                <stop offset="100%" stop-color="#ffd36e" />
+              </linearGradient>
+            </defs>
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 0ms" stroke="url(#ink-cn)" d="M190 70 C176 118 147 178 108 232" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 90ms" stroke="url(#ink-cn)" d="M153 142 C155 176 154 206 151 246" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 180ms" stroke="url(#ink-cn)" d="M222 92 C260 90 303 88 340 92" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 270ms" stroke="url(#ink-cn)" d="M286 93 C270 129 247 160 215 184" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 360ms" stroke="url(#ink-cn)" d="M301 126 C318 143 334 160 351 181" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 450ms" stroke="url(#ink-cn)" d="M274 144 C274 178 273 213 269 247 C268 258 254 256 240 247" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 540ms" stroke="url(#ink-cn)" d="M236 190 C214 213 190 231 169 242" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 630ms" stroke="url(#ink-cn)" d="M302 186 C326 207 346 226 365 244" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 780ms" stroke="url(#ink-cn)" d="M493 72 C481 124 462 181 433 239" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 890ms" stroke="url(#ink-cn)" d="M450 148 C488 166 516 188 540 221" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 1000ms" stroke="url(#ink-cn)" d="M528 83 C526 137 524 199 522 252" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 1110ms" stroke="url(#ink-cn)" d="M574 101 C626 96 672 96 713 103" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 1220ms" stroke="url(#ink-cn)" d="M711 103 C677 137 641 164 603 184" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 1330ms" stroke="url(#ink-cn)" d="M639 166 C638 199 638 225 636 249" />
+            <path class="hand-stroke cjk-stroke" pathLength="1" style="--delay: 1440ms" stroke="url(#ink-cn)" d="M552 205 C610 201 663 201 724 207" />
+          </svg>
+
+          <svg class="hello-svg latin-svg" data-lang="Spanish" viewBox="0 0 1000 320" role="img" aria-label="hola">
+            <defs>
+              <linearGradient id="ink-es" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#baff29" />
+                <stop offset="42%" stop-color="#48f4ff" />
+                <stop offset="72%" stop-color="#ff42d6" />
+                <stop offset="100%" stop-color="#ffd36e" />
+              </linearGradient>
+            </defs>
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 0ms" stroke="url(#ink-es)" d="M130 232 C164 173 178 64 139 66 C102 68 101 157 117 202 C132 244 169 226 190 190 C211 153 245 143 260 169 C275 195 257 229 229 229" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 310ms" stroke="url(#ink-es)" d="M352 145 C398 127 445 154 444 197 C443 239 385 249 354 215 C325 184 338 153 371 140 C409 124 455 145 474 181 C491 213 518 216 549 190" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 680ms" stroke="url(#ink-es)" d="M614 222 C651 166 665 69 629 64 C597 60 587 129 597 181 C607 235 644 235 674 203" />
+            <path class="hand-stroke latin-stroke" pathLength="1" style="--delay: 980ms" stroke="url(#ink-es)" d="M742 146 C784 123 830 142 838 181 C846 220 803 246 769 221 C739 199 746 153 781 138 C815 124 847 145 852 181 C857 211 871 221 899 195" />
+          </svg>
+
+          <svg class="hello-svg cjk-svg" data-lang="Japanese" viewBox="0 0 1000 320" role="img" aria-label="こんにちは">
+            <defs>
+              <linearGradient id="ink-ja" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#baff29" />
+                <stop offset="42%" stop-color="#48f4ff" />
+                <stop offset="72%" stop-color="#ff42d6" />
+                <stop offset="100%" stop-color="#ffd36e" />
+              </linearGradient>
+            </defs>
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 0ms" stroke="url(#ink-ja)" d="M84 105 C126 95 179 96 230 108" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 130ms" stroke="url(#ink-ja)" d="M86 210 C133 235 190 231 244 207" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 300ms" stroke="url(#ink-ja)" d="M292 229 C315 168 342 118 370 84 C386 65 410 73 408 96 C406 128 362 151 361 181 C360 221 415 229 460 190" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 520ms" stroke="url(#ink-ja)" d="M518 87 C500 144 496 193 506 238" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 650ms" stroke="url(#ink-ja)" d="M558 112 C600 103 642 104 682 114" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 780ms" stroke="url(#ink-ja)" d="M556 210 C601 230 646 226 696 203" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 960ms" stroke="url(#ink-ja)" d="M726 103 C775 105 826 100 868 88" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 1090ms" stroke="url(#ink-ja)" d="M794 76 C789 119 771 157 739 193 C774 167 826 165 845 198 C864 232 823 253 770 225" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 1270ms" stroke="url(#ink-ja)" d="M890 83 C876 143 873 198 883 240" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 1400ms" stroke="url(#ink-ja)" d="M928 92 C925 147 925 201 923 245" />
+            <path class="hand-stroke kana-stroke" pathLength="1" style="--delay: 1530ms" stroke="url(#ink-ja)" d="M913 147 C951 119 992 136 996 179 C1000 220 947 231 922 200" />
+          </svg>
+
+          <svg class="hello-svg cjk-svg" data-lang="Korean" viewBox="0 0 1000 320" role="img" aria-label="안녕하세요">
+            <defs>
+              <linearGradient id="ink-ko" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#baff29" />
+                <stop offset="42%" stop-color="#48f4ff" />
+                <stop offset="72%" stop-color="#ff42d6" />
+                <stop offset="100%" stop-color="#ffd36e" />
+              </linearGradient>
+            </defs>
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 0ms" stroke="url(#ink-ko)" d="M92 136 C92 93 162 88 171 132 C180 178 108 189 94 145" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 100ms" stroke="url(#ink-ko)" d="M212 78 C212 129 212 177 211 214" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 200ms" stroke="url(#ink-ko)" d="M94 231 C144 226 186 226 229 232" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 330ms" stroke="url(#ink-ko)" d="M292 84 C288 123 288 157 292 187" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 430ms" stroke="url(#ink-ko)" d="M292 90 C330 87 366 87 394 92 C392 113 392 132 397 151" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 540ms" stroke="url(#ink-ko)" d="M333 191 C350 161 408 162 414 199 C420 237 350 244 333 207" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 650ms" stroke="url(#ink-ko)" d="M450 73 C449 123 449 184 448 242" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 760ms" stroke="url(#ink-ko)" d="M298 252 C352 248 407 248 462 254" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 910ms" stroke="url(#ink-ko)" d="M522 101 C557 96 591 97 620 103" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1010ms" stroke="url(#ink-ko)" d="M574 75 C574 111 574 139 573 160" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1110ms" stroke="url(#ink-ko)" d="M535 207 C535 166 617 165 619 207 C621 247 537 247 535 207" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1240ms" stroke="url(#ink-ko)" d="M676 84 C674 130 674 188 676 232" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1340ms" stroke="url(#ink-ko)" d="M676 105 C706 102 733 102 758 106" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1440ms" stroke="url(#ink-ko)" d="M676 159 C704 156 730 156 754 160" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1540ms" stroke="url(#ink-ko)" d="M792 74 C792 128 792 184 792 241" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1640ms" stroke="url(#ink-ko)" d="M828 88 C829 134 829 185 828 226" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1790ms" stroke="url(#ink-ko)" d="M868 143 C868 102 942 101 946 142 C950 182 870 184 868 143" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 1900ms" stroke="url(#ink-ko)" d="M909 181 C909 198 909 217 908 236" />
+            <path class="hand-stroke hangul-stroke" pathLength="1" style="--delay: 2000ms" stroke="url(#ink-ko)" d="M858 243 C895 239 933 240 964 245" />
+          </svg>
         </div>
         <h1 class="boot-title" id="bootTitle">Zhang Siyang</h1>
         <div class="boot-track" aria-label="启动进度">
