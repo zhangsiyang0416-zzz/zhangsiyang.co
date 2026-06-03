@@ -4,6 +4,18 @@ const cursor = document.querySelector(".cursor");
 const progressBar = document.querySelector(".progress span");
 const copyDomain = document.querySelector("#copyDomain");
 const bootButton = document.querySelector("#bootButton");
+const bootScreen = document.querySelector("#bootScreen");
+const bootProgress = document.querySelector("#bootProgress");
+const bootStatus = document.querySelector("#bootStatus");
+const enterSite = document.querySelector("#enterSite");
+const helloWords = [...document.querySelectorAll(".hello-word")];
+const helloSequence = [
+  { label: "English", status: "English / waking personal OS" },
+  { label: "中文", status: "中文 / 正在启动个人世界" },
+  { label: "Español", status: "Español / cargando archivo vital" },
+  { label: "日本語", status: "日本語 / 旅と履歴を同期中" },
+  { label: "한국어", status: "한국어 / 개인 OS 준비 완료" }
+];
 
 function setSpotlight(event) {
   const x = `${event.clientX}px`;
@@ -32,6 +44,67 @@ function toast(message) {
   element.textContent = message;
   document.body.appendChild(element);
   window.setTimeout(() => element.remove(), 1800);
+}
+
+function updateBootScreen(value) {
+  if (bootProgress) {
+    bootProgress.style.width = `${value}%`;
+  }
+}
+
+function releaseBootScreen() {
+  if (!bootScreen) return;
+  bootScreen.classList.add("is-exiting");
+  body.classList.remove("boot-locked", "is-starting");
+  body.classList.add("is-awake");
+
+  window.setTimeout(() => {
+    bootScreen.remove();
+    toast("ZS_OS 已启动");
+  }, 720);
+}
+
+function runBootIntro() {
+  if (!bootScreen || !enterSite) {
+    body.classList.remove("boot-locked");
+    return;
+  }
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let index = 0;
+
+  function showHello(nextIndex) {
+    index = Math.min(nextIndex, helloSequence.length - 1);
+    helloWords.forEach((word, wordIndex) => {
+      word.classList.toggle("is-active", wordIndex === index);
+    });
+
+    const progress = Math.round(((index + 1) / helloSequence.length) * 100);
+    updateBootScreen(progress);
+
+    if (bootStatus) {
+      bootStatus.textContent = helloSequence[index].status;
+    }
+
+    if (index === helloSequence.length - 1) {
+      window.clearInterval(timer);
+      window.setTimeout(() => {
+        if (bootStatus) bootStatus.textContent = "你好，欢迎进入 zhangsiyang.co";
+        enterSite.disabled = false;
+        enterSite.focus({ preventScroll: true });
+      }, reducedMotion ? 100 : 620);
+    }
+  }
+
+  showHello(0);
+  const timer = window.setInterval(() => showHello(index + 1), reducedMotion ? 140 : 980);
+
+  enterSite.addEventListener("click", releaseBootScreen);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !enterSite.disabled && bootScreen.isConnected) {
+      releaseBootScreen();
+    }
+  });
 }
 
 function loadPhotoFrames() {
@@ -97,5 +170,6 @@ copyDomain?.addEventListener("click", async () => {
   toast("域名已复制");
 });
 
+runBootIntro();
 loadPhotoFrames();
 updateProgress();

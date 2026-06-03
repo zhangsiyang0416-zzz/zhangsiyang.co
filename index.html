@@ -13,7 +13,29 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body class="is-starting">
+  <body class="is-starting boot-locked">
+    <section class="boot-screen" id="bootScreen" aria-labelledby="bootTitle">
+      <div class="boot-grid" aria-hidden="true"></div>
+      <div class="boot-card hello-boot">
+        <p class="boot-kicker">zhangsiyang.co / hello sequence</p>
+        <div class="hello-stage" aria-live="polite">
+          <span class="hello-word is-active" data-lang="English">Hello</span>
+          <span class="hello-word" data-lang="Chinese">你好</span>
+          <span class="hello-word" data-lang="Spanish">Hola</span>
+          <span class="hello-word" data-lang="Japanese">こんにちは</span>
+          <span class="hello-word" data-lang="Korean">안녕하세요</span>
+        </div>
+        <h1 class="boot-title" id="bootTitle">Zhang Siyang</h1>
+        <div class="boot-track" aria-label="启动进度">
+          <span id="bootProgress"></span>
+        </div>
+        <p class="boot-status" id="bootStatus">English / waking personal OS</p>
+        <button class="boot-enter" id="enterSite" type="button" disabled>
+          进入 zhangsiyang.co
+        </button>
+      </div>
+    </section>
+
     <div class="cursor" aria-hidden="true"></div>
     <div class="progress" aria-hidden="true"><span></span></div>
 
