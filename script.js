@@ -9,10 +9,11 @@ const bootProgress = document.querySelector("#bootProgress");
 const bootStatus = document.querySelector("#bootStatus");
 const enterSite = document.querySelector("#enterSite");
 const helloSlides = [...document.querySelectorAll(".hello-slide")];
+const helloSvgs = [...document.querySelectorAll(".hello-svg")];
 const helloSequence = [
-  { label: "English", status: "English / handwriting hello", hold: 2400 },
-  { label: "中文", status: "中文 / 正在写入个人世界", hold: 2300 },
-  { label: "Español", status: "Español / escribiendo hola", hold: 2400 },
+  { label: "English", status: "English / Apple-style path writing", hold: 4300 },
+  { label: "中文", status: "中文 / 正在写入个人世界", hold: 3200 },
+  { label: "Español", status: "Español / trazando hola", hold: 5200 },
   { label: "日本語", status: "日本語 / こんにちはを書いています", hold: 3400 },
   { label: "한국어", status: "한국어 / 안녕하세요 쓰는 중", hold: 3300 }
 ];
@@ -74,31 +75,40 @@ function runBootIntro() {
   let index = 0;
   let timer = 0;
 
-  function restartHelloSlide(slide) {
-    if (!slide) return;
+  function restartAnimatedParts(container) {
+    if (!container) return;
 
-    const animatedParts = slide.querySelectorAll(".handwritten-word");
+    const animatedParts = container.querySelectorAll(".handwritten-word, .hand-stroke");
     animatedParts.forEach((part) => {
       part.style.animation = "none";
     });
-    slide.style.setProperty("--restart", Date.now());
+    container.style.setProperty("--restart", Date.now());
 
-    void slide.getBoundingClientRect();
+    void container.getBoundingClientRect();
 
     animatedParts.forEach((part) => {
       part.style.animation = "";
     });
-    slide.classList.add("is-active");
+  }
+
+  function restartHelloSlide(slide, svg) {
+    restartAnimatedParts(slide);
+    restartAnimatedParts(svg);
+    slide?.classList.add("is-active");
+    svg?.classList.add("is-active");
   }
 
   function showHello(nextIndex) {
-    const slideCount = Math.max(helloSlides.length, helloSequence.length);
+    const slideCount = Math.max(helloSlides.length, helloSvgs.length, helloSequence.length);
     index = Math.min(nextIndex, slideCount - 1);
 
     helloSlides.forEach((slide) => {
       slide.classList.remove("is-active");
     });
-    restartHelloSlide(helloSlides[index]);
+    helloSvgs.forEach((svg) => {
+      svg.classList.remove("is-active");
+    });
+    restartHelloSlide(helloSlides[index], helloSvgs[index]);
 
     const progress = Math.round(((index + 1) / slideCount) * 100);
     updateBootScreen(progress);
