@@ -18,6 +18,17 @@ const helloSequence = [
   { label: "한국어", status: "한국어 / 안녕하세요 쓰는 중", hold: 3300 }
 ];
 
+function shuffledIntroOrder(count) {
+  const order = Array.from({ length: count }, (_, index) => index);
+
+  for (let index = order.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [order[index], order[swapIndex]] = [order[swapIndex], order[index]];
+  }
+
+  return order;
+}
+
 function setSpotlight(event) {
   const x = `${event.clientX}px`;
   const y = `${event.clientY}px`;
@@ -72,8 +83,15 @@ function runBootIntro() {
   }
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let index = 0;
+  const slideCount = Math.min(helloSlides.length, helloSvgs.length, helloSequence.length);
+  const helloOrder = shuffledIntroOrder(slideCount);
+  let step = 0;
   let timer = 0;
+
+  if (!slideCount) {
+    enterSite.disabled = false;
+    return;
+  }
 
   function restartAnimatedParts(container) {
     if (!container) return;
@@ -98,9 +116,10 @@ function runBootIntro() {
     svg?.classList.add("is-active");
   }
 
-  function showHello(nextIndex) {
-    const slideCount = Math.max(helloSlides.length, helloSvgs.length, helloSequence.length);
-    index = Math.min(nextIndex, slideCount - 1);
+  function showHello(nextStep) {
+    step = Math.min(nextStep, slideCount - 1);
+    const activeIndex = helloOrder[step] ?? step;
+    const activeSequence = helloSequence[activeIndex];
 
     helloSlides.forEach((slide) => {
       slide.classList.remove("is-active");
@@ -108,28 +127,28 @@ function runBootIntro() {
     helloSvgs.forEach((svg) => {
       svg.classList.remove("is-active");
     });
-    restartHelloSlide(helloSlides[index], helloSvgs[index]);
+    restartHelloSlide(helloSlides[activeIndex], helloSvgs[activeIndex]);
 
-    const progress = Math.round(((index + 1) / slideCount) * 100);
+    const progress = Math.round(((step + 1) / slideCount) * 100);
     updateBootScreen(progress);
 
     if (bootStatus) {
-      bootStatus.textContent = helloSequence[index]?.status || "hello / handwriting sequence";
+      bootStatus.textContent = activeSequence?.status || "hello / handwriting sequence";
     }
 
-    if (index === slideCount - 1) {
+    if (step === slideCount - 1) {
       window.clearTimeout(timer);
       window.setTimeout(() => {
         if (bootStatus) bootStatus.textContent = "你好，欢迎进入 zhangsiyang.co";
         enterSite.disabled = false;
         enterSite.focus({ preventScroll: true });
-      }, reducedMotion ? 120 : (helloSequence[index]?.hold || 1800));
+      }, reducedMotion ? 120 : (activeSequence?.hold || 1800));
       return;
     }
 
     timer = window.setTimeout(
-      () => showHello(index + 1),
-      reducedMotion ? 180 : (helloSequence[index]?.hold || 2200)
+      () => showHello(step + 1),
+      reducedMotion ? 180 : (activeSequence?.hold || 2200)
     );
   }
 
