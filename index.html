@@ -11,7 +11,7 @@
     <meta property="og:url" content="https://zhangsiyang.co/">
     <meta name="theme-color" content="#0608ff">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=official-cjk-20260604">
+    <link rel="stylesheet" href="styles.css?v=designer-viewer-20260605">
   </head>
   <body class="is-starting boot-locked">
     <section class="boot-screen" id="bootScreen" aria-labelledby="bootTitle">
@@ -162,6 +162,7 @@
         <a href="#story">经历</a>
         <a href="#work">项目</a>
         <a href="#atlas">照片</a>
+        <a href="#thinker">思考</a>
         <a href="#resume">简历</a>
         <a href="#contact">联系</a>
       </nav>
@@ -174,7 +175,7 @@
         </div>
 
         <div class="hero-copy" data-reveal>
-          <p class="kicker">Personal operating system / travel archive / resume lab</p>
+          <p class="kicker">Designer / Explorer / Thinker</p>
           <h1 id="hero-title">Zhang<br>Siyang</h1>
           <p class="hero-lead">
             一个正在启动的个人世界：把经历、项目、简历、旅行照片和生活片段，整理成别人一眼就能进入的档案系统。
@@ -197,26 +198,31 @@
             </div>
             <div class="terminal-lines">
               <p>&gt; loading story modules...</p>
-              <p>&gt; mounting resume archive...</p>
-              <p>&gt; scanning travel photos...</p>
+              <p>&gt; mounting designer archive...</p>
+              <p>&gt; scanning explorer photos...</p>
+              <p>&gt; opening thinker notes...</p>
               <p class="terminal-ready">ready: zhangsiyang.co</p>
             </div>
           </div>
           <div class="app-grid" aria-label="网站模块">
             <button class="app-icon" type="button" data-target="#story">
               <span>01</span>
-              <strong>Story</strong>
+              <strong>Explorer</strong>
             </button>
             <button class="app-icon" type="button" data-target="#work">
               <span>02</span>
-              <strong>Work</strong>
+              <strong>Designer</strong>
             </button>
             <button class="app-icon accent" type="button" data-target="#atlas">
               <span>03</span>
               <strong>Photos</strong>
             </button>
-            <button class="app-icon warm" type="button" data-target="#resume">
+            <button class="app-icon" type="button" data-target="#thinker">
               <span>04</span>
+              <strong>Thinker</strong>
+            </button>
+            <button class="app-icon warm" type="button" data-target="#resume">
+              <span>05</span>
               <strong>Resume</strong>
             </button>
           </div>
@@ -225,34 +231,36 @@
 
       <section class="ticker" aria-label="网站关键词">
         <div>
+          <span>designer</span>
+          <span>explorer</span>
+          <span>thinker</span>
           <span>experience</span>
           <span>portfolio</span>
           <span>travel archive</span>
-          <span>resume</span>
-          <span>life photos</span>
-          <span>builder log</span>
+          <span>life notes</span>
+          <span>designer</span>
+          <span>explorer</span>
+          <span>thinker</span>
           <span>experience</span>
           <span>portfolio</span>
           <span>travel archive</span>
-          <span>resume</span>
-          <span>life photos</span>
-          <span>builder log</span>
+          <span>life notes</span>
         </div>
       </section>
 
       <section id="story" class="section story-grid">
         <div class="section-label" data-reveal>
-          <p class="kicker">01 / Story</p>
-          <h2>先让别人记住你。</h2>
+          <p class="kicker">01 / I am an Explorer</p>
+          <h2>经历是地图，照片是坐标。</h2>
         </div>
         <div class="story-copy" data-reveal>
           <p>
-            这里会写你的个人经历：你从哪里来，做过什么，正在往哪里走。第一版先保留结构，等你把经历和简历材料发来，我会把它写成真正属于你的叙事。
+            这里会放你的个人经历、旅行、生活照片和正在展开的世界。等真实素材进来，它会变成一条可以被别人进入的路径。
           </p>
           <div class="fact-grid">
             <article>
               <span>Current mode</span>
-              <strong>Builder / Explorer</strong>
+              <strong>Explorer</strong>
             </article>
             <article>
               <span>Website goal</span>
@@ -298,39 +306,94 @@
 
       <section id="work" class="section work-section">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">03 / Work</p>
-          <h2>项目先占位，气质先到位。</h2>
-          <p>以后这里可以扩展成项目详情页、视频、文章、作品集 PDF、课程作业或创业记录。</p>
+          <p class="kicker">03 / I am a Designer</p>
+          <h2>个人项目</h2>
         </div>
-        <div class="work-grid">
-          <article class="work-card tall" data-reveal>
-            <span class="tag">Website</span>
-            <h3>Personal OS</h3>
-            <p>你的公开主页，不只是简历，而是一个持续更新的个人系统。</p>
-            <a href="#contact" aria-label="联系">↗</a>
+
+        <div class="designer-viewer" data-reveal>
+          <aside class="designer-menu" aria-label="作品目录">
+            <div class="designer-cover">
+              <span>2026</span>
+              <h3>I AM A DESIGNER</h3>
+              <em>ZHANG SIYANG PORTFOLIO</em>
+            </div>
+
+            <div class="designer-list" role="tablist" aria-label="Designer works">
+              <button class="designer-tab is-active" type="button" role="tab" aria-selected="true" data-work-index="0">
+                <span>01</span>
+                <strong>Pop Art Poster</strong>
+                <em>Pop Art Poster</em>
+                <b>1 PAGE</b>
+              </button>
+              <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="1">
+                <span>02</span>
+                <strong>三学街历史文化街区青旅设计</strong>
+                <em>Sanxuejie Historic District Youth Hostel Design</em>
+                <b>3 PAGES</b>
+              </button>
+              <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="2">
+                <span>03</span>
+                <strong>咸阳历史文化街区泛博物馆拼接改造</strong>
+                <em>Xianyang Historic District Pan-Museum Renewal</em>
+                <b>7 PAGES</b>
+              </button>
+              <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="3">
+                <span>04</span>
+                <strong>建筑技术设计</strong>
+                <em>Architectural Technology Design</em>
+                <b>6 PAGES</b>
+              </button>
+              <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="4">
+                <span>05</span>
+                <strong>湿地建筑设计</strong>
+                <em>Wetland Architecture Design</em>
+                <b>2 PAGES</b>
+              </button>
+              <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="5">
+                <span>06</span>
+                <strong>钢结构楼梯设计</strong>
+                <em>Steel Structure Stair Design</em>
+                <b>2 PAGES</b>
+              </button>
+            </div>
+          </aside>
+
+          <article class="designer-board" aria-live="polite">
+            <div class="designer-board-head">
+              <span id="designerWorkCount">01 / 06</span>
+              <h3 id="designerTitle">Pop Art Poster</h3>
+              <p id="designerSubtitle">Pop Art Poster</p>
+            </div>
+
+            <div class="designer-stage">
+              <button class="designer-page-button" id="designerPrevPage" type="button" aria-label="上一页" title="上一页">‹</button>
+              <div class="designer-image-frame">
+                <img id="designerImage" src="assets/works/pop-art-poster-page-1.jpg" alt="Pop Art Poster 第 1 页">
+              </div>
+              <button class="designer-page-button" id="designerNextPage" type="button" aria-label="下一页" title="下一页">›</button>
+            </div>
+
+            <div class="designer-controls">
+              <span id="designerPageCount">PAGE 01 / 01</span>
+              <button class="designer-zoom" id="designerOpenLightbox" type="button" aria-label="放大浏览" title="放大浏览">⤢</button>
+            </div>
           </article>
-          <article class="work-card" data-reveal>
-            <span class="tag red">Resume</span>
-            <h3>Web Resume</h3>
-            <p>把 PDF 简历升级成网页里的经历叙事，适合发给导师、朋友、合作方或招聘方。</p>
-            <a href="#resume" aria-label="查看简历">↗</a>
-          </article>
-          <article class="work-card" data-reveal>
-            <span class="tag gold">Travel</span>
-            <h3>Photo Atlas</h3>
-            <p>按城市、年份、人物、情绪整理照片，最后变成你的生活地图。</p>
-            <a href="#atlas" aria-label="查看照片">↗</a>
-          </article>
+        </div>
+
+        <div class="designer-lightbox" id="designerLightbox" hidden>
+          <button class="designer-lightbox-close" id="designerCloseLightbox" type="button" aria-label="关闭" title="关闭">×</button>
+          <img id="designerLightboxImage" src="assets/works/pop-art-poster-page-1.jpg" alt="Pop Art Poster 第 1 页放大图">
+          <div class="designer-lightbox-meta">
+            <strong id="designerLightboxTitle">Pop Art Poster</strong>
+            <span id="designerLightboxPage">PAGE 01 / 01</span>
+          </div>
         </div>
       </section>
 
       <section id="atlas" class="atlas">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">04 / Photo Atlas</p>
-          <h2>旅行和生活照片，会变成这里最炸的部分。</h2>
-          <p>
-            现在先做视觉框架。之后你把照片素材给我，我会把占位图替换成真实相册，按旅行、生活、城市和朋友分组。
-          </p>
+          <p class="kicker">04 / I am an Explorer</p>
+          <h2>Photo Atlas</h2>
         </div>
         <div class="photo-wall">
           <figure class="photo-tile large photo-frame" data-src="assets/photos/travel-01.jpg" data-reveal>
@@ -351,9 +414,20 @@
         </div>
       </section>
 
+      <section id="thinker" class="section thinker-section">
+        <div class="section-label wide" data-reveal>
+          <p class="kicker">05 / I am a Thinker</p>
+          <h2>个人思考 / Life Notes</h2>
+        </div>
+        <div class="thinker-panel" data-reveal>
+          <span>THINKING INDEX</span>
+          <p>建筑、城市、旅行、学习、人生分享，都会慢慢归档到这里。</p>
+        </div>
+      </section>
+
       <section id="resume" class="section resume">
         <div class="section-label" data-reveal>
-          <p class="kicker">05 / Resume</p>
+          <p class="kicker">06 / Resume</p>
           <h2>简历入口，先搭好。</h2>
         </div>
         <div class="resume-panel" data-reveal>
@@ -382,7 +456,7 @@
 
       <section id="contact" class="contact">
         <div data-reveal>
-          <p class="kicker">06 / Contact</p>
+          <p class="kicker">07 / Contact</p>
           <h2>下一步，把真实内容塞进去。</h2>
           <p>把你的经历、简历、照片文件夹发来，我就能继续把这个框架变成完整版。</p>
         </div>
@@ -398,6 +472,6 @@
       <span>Built for zhangsiyang.co</span>
     </footer>
 
-    <script src="script.js?v=random-hello-order-20260604"></script>
+    <script src="script.js?v=designer-viewer-20260605"></script>
   </body>
 </html>

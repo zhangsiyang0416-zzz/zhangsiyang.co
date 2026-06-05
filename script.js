@@ -8,6 +8,20 @@ const bootScreen = document.querySelector("#bootScreen");
 const bootProgress = document.querySelector("#bootProgress");
 const bootStatus = document.querySelector("#bootStatus");
 const enterSite = document.querySelector("#enterSite");
+const designerTabs = [...document.querySelectorAll(".designer-tab")];
+const designerImage = document.querySelector("#designerImage");
+const designerTitle = document.querySelector("#designerTitle");
+const designerSubtitle = document.querySelector("#designerSubtitle");
+const designerWorkCount = document.querySelector("#designerWorkCount");
+const designerPageCount = document.querySelector("#designerPageCount");
+const designerPrevPage = document.querySelector("#designerPrevPage");
+const designerNextPage = document.querySelector("#designerNextPage");
+const designerOpenLightbox = document.querySelector("#designerOpenLightbox");
+const designerLightbox = document.querySelector("#designerLightbox");
+const designerLightboxImage = document.querySelector("#designerLightboxImage");
+const designerLightboxTitle = document.querySelector("#designerLightboxTitle");
+const designerLightboxPage = document.querySelector("#designerLightboxPage");
+const designerCloseLightbox = document.querySelector("#designerCloseLightbox");
 const helloSlides = [...document.querySelectorAll(".hello-slide")];
 const helloSvgs = [...document.querySelectorAll(".hello-svg")];
 const helloSequence = [
@@ -17,6 +31,45 @@ const helloSequence = [
   { label: "日本語", status: "日本語 / こんにちはを書いています", hold: 3400 },
   { label: "한국어", status: "한국어 / 안녕하세요 쓰는 중", hold: 3300 }
 ];
+const designerWorks = [
+  {
+    title: "Pop Art Poster",
+    subtitle: "Pop Art Poster",
+    pages: workPages("pop-art-poster", 1)
+  },
+  {
+    title: "三学街历史文化街区青旅设计",
+    subtitle: "Sanxuejie Historic District Youth Hostel Design",
+    pages: workPages("sanxuejie-youth-hostel", 3)
+  },
+  {
+    title: "咸阳历史文化街区泛博物馆拼接改造",
+    subtitle: "Xianyang Historic District Pan-Museum Renewal",
+    pages: workPages("xianyang-pan-museum", 7)
+  },
+  {
+    title: "建筑技术设计",
+    subtitle: "Architectural Technology Design",
+    pages: workPages("architectural-technology-design", 6)
+  },
+  {
+    title: "湿地建筑设计",
+    subtitle: "Wetland Architecture Design",
+    pages: workPages("wetland-architecture-design", 2)
+  },
+  {
+    title: "钢结构楼梯设计",
+    subtitle: "Steel Structure Stair Design",
+    pages: workPages("steel-stair-design", 2)
+  }
+];
+
+let activeDesignerWork = 0;
+let activeDesignerPage = 0;
+
+function workPages(slug, count) {
+  return Array.from({ length: count }, (_, index) => `assets/works/${slug}-page-${index + 1}.jpg`);
+}
 
 function shuffledIntroOrder(count) {
   const order = Array.from({ length: count }, (_, index) => index);
@@ -174,6 +227,103 @@ function loadPhotoFrames() {
   });
 }
 
+function formatNumber(value) {
+  return String(value).padStart(2, "0");
+}
+
+function updateDesignerLightbox(work, pageNumber, pageTotal) {
+  if (!designerLightboxImage || !designerLightboxTitle || !designerLightboxPage) return;
+
+  designerLightboxImage.src = work.pages[activeDesignerPage];
+  designerLightboxImage.alt = `${work.title} 第 ${pageNumber} 页放大图`;
+  designerLightboxTitle.textContent = work.title;
+  designerLightboxPage.textContent = `PAGE ${formatNumber(pageNumber)} / ${formatNumber(pageTotal)}`;
+}
+
+function preloadDesignerPage(work, pageIndex) {
+  if (!work?.pages?.length) return;
+  const preload = new Image();
+  preload.src = work.pages[pageIndex];
+}
+
+function updateDesignerViewer() {
+  const work = designerWorks[activeDesignerWork];
+  if (!work || !designerImage) return;
+
+  activeDesignerPage = Math.min(Math.max(activeDesignerPage, 0), work.pages.length - 1);
+  const pageNumber = activeDesignerPage + 1;
+  const pageTotal = work.pages.length;
+
+  designerTabs.forEach((tab, index) => {
+    const isActive = index === activeDesignerWork;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", String(isActive));
+  });
+
+  designerImage.src = work.pages[activeDesignerPage];
+  designerImage.alt = `${work.title} 第 ${pageNumber} 页`;
+
+  if (designerTitle) designerTitle.textContent = work.title;
+  if (designerSubtitle) designerSubtitle.textContent = work.subtitle;
+  if (designerWorkCount) {
+    designerWorkCount.textContent = `${formatNumber(activeDesignerWork + 1)} / ${formatNumber(designerWorks.length)}`;
+  }
+  if (designerPageCount) {
+    designerPageCount.textContent = `PAGE ${formatNumber(pageNumber)} / ${formatNumber(pageTotal)}`;
+  }
+
+  updateDesignerLightbox(work, pageNumber, pageTotal);
+  preloadDesignerPage(work, (activeDesignerPage + 1) % pageTotal);
+}
+
+function moveDesignerPage(direction) {
+  const work = designerWorks[activeDesignerWork];
+  if (!work) return;
+  const pageTotal = work.pages.length;
+  activeDesignerPage = (activeDesignerPage + direction + pageTotal) % pageTotal;
+  updateDesignerViewer();
+}
+
+function openDesignerLightbox() {
+  if (!designerLightbox) return;
+  designerLightbox.hidden = false;
+  body.classList.add("lightbox-locked");
+  requestAnimationFrame(() => designerLightbox.classList.add("is-active"));
+}
+
+function closeDesignerLightbox() {
+  if (!designerLightbox) return;
+  designerLightbox.classList.remove("is-active");
+  body.classList.remove("lightbox-locked");
+  window.setTimeout(() => {
+    designerLightbox.hidden = true;
+  }, 220);
+}
+
+designerTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    activeDesignerWork = Number(tab.dataset.workIndex || 0);
+    activeDesignerPage = 0;
+    updateDesignerViewer();
+  });
+});
+
+designerPrevPage?.addEventListener("click", () => moveDesignerPage(-1));
+designerNextPage?.addEventListener("click", () => moveDesignerPage(1));
+designerOpenLightbox?.addEventListener("click", openDesignerLightbox);
+designerImage?.addEventListener("click", openDesignerLightbox);
+designerCloseLightbox?.addEventListener("click", closeDesignerLightbox);
+designerLightbox?.addEventListener("click", (event) => {
+  if (event.target === designerLightbox) closeDesignerLightbox();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (!designerLightbox || designerLightbox.hidden) return;
+  if (event.key === "Escape") closeDesignerLightbox();
+  if (event.key === "ArrowLeft") moveDesignerPage(-1);
+  if (event.key === "ArrowRight") moveDesignerPage(1);
+});
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -227,4 +377,5 @@ copyDomain?.addEventListener("click", async () => {
 
 runBootIntro();
 loadPhotoFrames();
+updateDesignerViewer();
 updateProgress();
