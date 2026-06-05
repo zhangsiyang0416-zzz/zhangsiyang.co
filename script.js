@@ -69,7 +69,7 @@ const designerWorks = [
 
 const translations = {
   en: {
-    "boot.enter": "Enter / Skip intro",
+    "boot.enter": "Enter zhangsiyang.co",
     "boot.progress": "Boot progress",
     "boot.ready": "Hello, welcome to zhangsiyang.co",
     "wordmark.aria": "Back to home",
@@ -169,7 +169,7 @@ const translations = {
     "toast.online": "ZS_OS online"
   },
   zh: {
-    "boot.enter": "进入 / 跳过动画",
+    "boot.enter": "进入 zhangsiyang.co",
     "boot.progress": "启动进度",
     "boot.ready": "你好，欢迎进入 zhangsiyang.co",
     "wordmark.aria": "回到首页",
