@@ -8,6 +8,9 @@ const bootScreen = document.querySelector("#bootScreen");
 const bootProgress = document.querySelector("#bootProgress");
 const bootStatus = document.querySelector("#bootStatus");
 const enterSite = document.querySelector("#enterSite");
+const viewPanels = [...document.querySelectorAll("[data-view-panel]")];
+const viewLinks = [...document.querySelectorAll("[data-view-link]")];
+const languageButtons = [...document.querySelectorAll("[data-lang-switch]")];
 const designerTabs = [...document.querySelectorAll(".designer-tab")];
 const designerImage = document.querySelector("#designerImage");
 const designerTitle = document.querySelector("#designerTitle");
@@ -33,42 +36,333 @@ const helloSequence = [
 ];
 const designerWorks = [
   {
-    title: "Pop Art Poster",
-    subtitle: "Pop Art Poster",
+    title: { en: "Pop Art Poster", zh: "Pop Art Poster" },
+    subtitle: { en: "Pop Art Poster", zh: "Pop Art Poster" },
     pages: workPages("pop-art-poster", 1)
   },
   {
-    title: "三学街历史文化街区青旅设计",
-    subtitle: "Sanxuejie Historic District Youth Hostel Design",
+    title: { en: "Sanxuejie Historic District Youth Hostel Design", zh: "三学街历史文化街区青旅设计" },
+    subtitle: { en: "三学街历史文化街区青旅设计", zh: "Sanxuejie Historic District Youth Hostel Design" },
     pages: workPages("sanxuejie-youth-hostel", 3)
   },
   {
-    title: "咸阳历史文化街区泛博物馆拼接改造",
-    subtitle: "Xianyang Historic District Pan-Museum Renewal",
+    title: { en: "Xianyang Historic District Pan-Museum Renewal", zh: "咸阳历史文化街区泛博物馆拼接改造" },
+    subtitle: { en: "咸阳历史文化街区泛博物馆拼接改造", zh: "Xianyang Historic District Pan-Museum Renewal" },
     pages: workPages("xianyang-pan-museum", 7)
   },
   {
-    title: "建筑技术设计",
-    subtitle: "Architectural Technology Design",
+    title: { en: "Architectural Technology Design", zh: "建筑技术设计" },
+    subtitle: { en: "建筑技术设计", zh: "Architectural Technology Design" },
     pages: workPages("architectural-technology-design", 6)
   },
   {
-    title: "湿地建筑设计",
-    subtitle: "Wetland Architecture Design",
+    title: { en: "Wetland Architecture Design", zh: "湿地建筑设计" },
+    subtitle: { en: "湿地建筑设计", zh: "Wetland Architecture Design" },
     pages: workPages("wetland-architecture-design", 2)
   },
   {
-    title: "钢结构楼梯设计",
-    subtitle: "Steel Structure Stair Design",
+    title: { en: "Steel Structure Stair Design", zh: "钢结构楼梯设计" },
+    subtitle: { en: "钢结构楼梯设计", zh: "Steel Structure Stair Design" },
     pages: workPages("steel-stair-design", 2)
   }
 ];
 
+const translations = {
+  en: {
+    "boot.enter": "Enter / Skip intro",
+    "boot.progress": "Boot progress",
+    "boot.ready": "Hello, welcome to zhangsiyang.co",
+    "wordmark.aria": "Back to home",
+    "nav.aria": "Main navigation",
+    "nav.story": "Explorer",
+    "nav.work": "Designer",
+    "nav.atlas": "Photos",
+    "nav.thinker": "Thinker",
+    "nav.resume": "Resume",
+    "nav.contact": "Contact",
+    "language.aria": "Language switcher",
+    "ticker.aria": "Site keywords",
+    "hero.kicker": "Designer / Explorer / Thinker",
+    "hero.lead": "Architecture dual-degree student across XJTU and Politecnico di Milano, mapping public space, sustainable cities, and 30-country field notes into one living archive.",
+    "hero.education.label": "Education",
+    "hero.education.title": "Architecture dual degree",
+    "hero.education.detail": "Xi'an Jiaotong University / Politecnico di Milano",
+    "hero.focus.label": "Focus",
+    "hero.focus.detail": "Urban renewal / Public space / Sustainable design",
+    "hero.explorer.label": "Explorer",
+    "hero.explorer.detail": "30 countries and counting",
+    "hero.motto": "Keep Thinking, Keep Designing, Keep Exploring.",
+    "hero.boot": "Boot Explorer",
+    "hero.photos": "Open Photo Atlas",
+    "desktop.live": "LIVE",
+    "terminal.title": "BOOT_SEQUENCE.log",
+    "terminal.story": "> loading story modules...",
+    "terminal.designer": "> mounting designer archive...",
+    "terminal.photos": "> scanning explorer photos...",
+    "terminal.profile": "> profile kernel: architecture / XJTU / Politecnico di Milano",
+    "terminal.exchange": "> summer exchange: UC Berkeley / sustainable cities",
+    "terminal.travel": "> travel log: 30 countries indexed",
+    "terminal.thinker": "> opening thinker notes...",
+    "terminal.ready": "ready: zhangsiyang.co",
+    "profileKernel.aria": "Profile kernel",
+    "profileKernel.label": "PROFILE_KERNEL",
+    "profileKernel.title": "Designer. Explorer. Thinker.",
+    "profileKernel.body": "Studying architecture across Xi'an Jiaotong University and Politecnico di Milano, extending design research through UC Berkeley summer exchange work, and collecting the world through 30 countries of travel.",
+    "app.aria": "Site modules",
+    "app.story": "Explorer",
+    "app.work": "Designer",
+    "app.atlas": "Photos",
+    "app.thinker": "Thinker",
+    "app.resume": "Resume",
+    "story.kicker": "01 / I am an Explorer",
+    "story.title": "Experience is a map. Photos are coordinates.",
+    "story.body": "This interface collects my education, travel, living archive, and the world I keep building through design.",
+    "story.fact.mode.label": "Current mode",
+    "story.fact.mode.value": "Explorer",
+    "story.fact.goal.label": "Website goal",
+    "story.fact.goal.value": "Know me in 60 seconds",
+    "story.fact.archive.label": "Archive",
+    "story.fact.archive.value": "Experience / Projects / Photos / Life",
+    "timeline.kicker": "02 / Timeline",
+    "timeline.title": "Life is not a table. It is an expandable line.",
+    "timeline.site.title": "zhangsiyang.co goes live",
+    "timeline.site.body": "The first version builds the entrance, structure, and visual system. Real stories, works, and photos keep moving in.",
+    "timeline.project.title": "Experience and project nodes",
+    "timeline.project.body": "A place for study, work, studio projects, competitions, courses, and the turns worth remembering.",
+    "timeline.travel.title": "Travel and life archive",
+    "timeline.travel.body": "Turning a large photo collection into a visual story with rhythm, not a storage dump.",
+    "work.kicker": "03 / I am a Designer",
+    "work.title": "Personal Projects",
+    "work.menu.aria": "Works directory",
+    "work.tabs.aria": "Designer works",
+    "work.prev": "Previous page",
+    "work.next": "Next page",
+    "work.zoom": "Zoom view",
+    "work.close": "Close",
+    "atlas.kicker": "04 / I am an Explorer",
+    "atlas.title": "Photo Atlas",
+    "atlas.travel": "TRAVEL / cover",
+    "atlas.life": "LIFE / moments",
+    "atlas.city": "CITY / map",
+    "atlas.food": "TABLE / food",
+    "atlas.people": "PEOPLE / friends",
+    "thinker.kicker": "05 / I am a Thinker",
+    "thinker.title": "Life Notes",
+    "thinker.body": "Architecture, cities, travel, learning, and life reflections will be archived here as the system grows.",
+    "resume.kicker": "06 / Resume",
+    "resume.title": "Resume interface, ready to expand.",
+    "resume.body": "This will become my resume system: education, work experience, projects, skills, awards, certificates, and a downloadable version.",
+    "resume.button": "Open resume material slot",
+    "resume.education.label": "Education",
+    "resume.education": "To fill: schools, major, time, highlights",
+    "resume.experience.label": "Experience",
+    "resume.experience": "To fill: studios, roles, contribution, outcomes",
+    "resume.skills.label": "Skills",
+    "resume.skills": "To fill: languages, tools, AI collaboration, work links",
+    "contact.kicker": "07 / Contact",
+    "contact.title": "Next step: feed the system with real material.",
+    "contact.body": "Send experiences, resume material, and photo folders, and this framework can keep growing into a complete public archive.",
+    "contact.copy": "Copy domain",
+    "footer.built": "Built for zhangsiyang.co",
+    "toast.boot": "Explorer interface online",
+    "toast.domain": "Domain copied",
+    "toast.online": "ZS_OS online"
+  },
+  zh: {
+    "boot.enter": "进入 / 跳过动画",
+    "boot.progress": "启动进度",
+    "boot.ready": "你好，欢迎进入 zhangsiyang.co",
+    "wordmark.aria": "回到首页",
+    "nav.aria": "主导航",
+    "nav.story": "经历",
+    "nav.work": "项目",
+    "nav.atlas": "照片",
+    "nav.thinker": "思考",
+    "nav.resume": "简历",
+    "nav.contact": "联系",
+    "language.aria": "语言切换",
+    "ticker.aria": "网站关键词",
+    "hero.kicker": "设计者 / 探索者 / 思考者",
+    "hero.lead": "建筑双学位学生，学习经历横跨西安交通大学与米兰理工大学，把公共空间、可持续城市和 30 国旅行观察整理成一个持续生长的个人档案。",
+    "hero.education.label": "教育",
+    "hero.education.title": "建筑双学位",
+    "hero.education.detail": "西安交通大学 / 米兰理工大学",
+    "hero.focus.label": "方向",
+    "hero.focus.detail": "城市更新 / 公共空间 / 可持续设计",
+    "hero.explorer.label": "探索",
+    "hero.explorer.detail": "走过 30 个国家，并且还在继续",
+    "hero.motto": "保持思考，保持设计，保持探索。",
+    "hero.boot": "开机进入",
+    "hero.photos": "先看照片墙",
+    "desktop.live": "在线",
+    "terminal.title": "启动序列.log",
+    "terminal.story": "> 正在载入经历模块...",
+    "terminal.designer": "> 正在挂载设计作品档案...",
+    "terminal.photos": "> 正在扫描旅行照片...",
+    "terminal.profile": "> 个人内核：建筑 / 西安交大 / 米兰理工",
+    "terminal.exchange": "> 暑期交流：UC Berkeley / 可持续城市",
+    "terminal.travel": "> 旅行日志：30 个国家已索引",
+    "terminal.thinker": "> 正在打开思考笔记...",
+    "terminal.ready": "就绪：zhangsiyang.co",
+    "profileKernel.aria": "个人内核",
+    "profileKernel.label": "个人内核",
+    "profileKernel.title": "设计者。探索者。思考者。",
+    "profileKernel.body": "我在西安交通大学与米兰理工大学学习建筑，通过 UC Berkeley 暑期交流延伸对可持续城市的研究，也把走过 30 个国家的旅行观察持续收进这个个人世界。",
+    "app.aria": "网站模块",
+    "app.story": "经历",
+    "app.work": "项目",
+    "app.atlas": "照片",
+    "app.thinker": "思考",
+    "app.resume": "简历",
+    "story.kicker": "01 / 我是探索者",
+    "story.title": "经历是地图，照片是坐标。",
+    "story.body": "这里收集我的就读经历、旅行、生活档案，以及我通过设计不断展开的世界。",
+    "story.fact.mode.label": "当前模式",
+    "story.fact.mode.value": "探索者",
+    "story.fact.goal.label": "网站目标",
+    "story.fact.goal.value": "60 秒认识我",
+    "story.fact.archive.label": "档案",
+    "story.fact.archive.value": "经历 / 项目 / 照片 / 生活",
+    "timeline.kicker": "02 / 时间线",
+    "timeline.title": "人生不是一张表，是一条可展开的线。",
+    "timeline.site.title": "zhangsiyang.co 上线",
+    "timeline.site.body": "第一版先把入口、结构和风格打好，真实经历、作品和照片会继续装进来。",
+    "timeline.project.title": "经历与项目节点",
+    "timeline.project.body": "这里会放学习、工作、项目、课程、竞赛，以及任何值得被看到的转折。",
+    "timeline.travel.title": "旅行和生活档案",
+    "timeline.travel.body": "把大量照片变成有节奏的视觉故事，而不是普通网盘相册。",
+    "work.kicker": "03 / 我是设计者",
+    "work.title": "个人项目",
+    "work.menu.aria": "作品目录",
+    "work.tabs.aria": "设计作品",
+    "work.prev": "上一页",
+    "work.next": "下一页",
+    "work.zoom": "放大浏览",
+    "work.close": "关闭",
+    "atlas.kicker": "04 / 我是探索者",
+    "atlas.title": "照片地图",
+    "atlas.travel": "旅行 / 封面",
+    "atlas.life": "生活 / 片段",
+    "atlas.city": "城市 / 地图",
+    "atlas.food": "餐桌 / 食物",
+    "atlas.people": "朋友 / 人物",
+    "thinker.kicker": "05 / 我是思考者",
+    "thinker.title": "个人思考 / Life Notes",
+    "thinker.body": "建筑、城市、旅行、学习、人生分享，都会慢慢归档到这里。",
+    "resume.kicker": "06 / 简历",
+    "resume.title": "简历界面，先搭好。",
+    "resume.body": "这里会变成我的简历系统：教育背景、工作经历、项目经历、技能、奖项、证书和下载入口。",
+    "resume.button": "查看简历素材位",
+    "resume.education.label": "教育",
+    "resume.education": "待填：学校、专业、时间、亮点",
+    "resume.experience.label": "经历",
+    "resume.experience": "待填：公司/项目、职位、贡献、结果",
+    "resume.skills.label": "技能",
+    "resume.skills": "待填：语言、工具、AI 协作能力、作品链接",
+    "contact.kicker": "07 / 联系",
+    "contact.title": "下一步，把真实内容塞进去。",
+    "contact.body": "把经历、简历、照片文件夹发来，这个框架就能继续变成完整的公开个人档案。",
+    "contact.copy": "复制域名",
+    "footer.built": "为 zhangsiyang.co 搭建",
+    "toast.boot": "经历界面已启动",
+    "toast.domain": "域名已复制",
+    "toast.online": "ZS_OS 已启动"
+  }
+};
+
 let activeDesignerWork = 0;
 let activeDesignerPage = 0;
+let currentLanguage = "en";
 
 function workPages(slug, count) {
   return Array.from({ length: count }, (_, index) => `assets/works/${slug}-page-${index + 1}.jpg`);
+}
+
+function t(key) {
+  return translations[currentLanguage]?.[key] || translations.en[key] || key;
+}
+
+function localizedValue(value) {
+  if (!value || typeof value !== "object") return value;
+  return value[currentLanguage] || value.en || "";
+}
+
+function workTitle(work) {
+  return localizedValue(work?.title);
+}
+
+function workSubtitle(work) {
+  return localizedValue(work?.subtitle);
+}
+
+function applyLanguage(language) {
+  currentLanguage = language === "zh" ? "zh" : "en";
+  root.lang = currentLanguage === "zh" ? "zh-CN" : "en";
+  root.dataset.lang = currentLanguage;
+  body.dataset.lang = currentLanguage;
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = t(element.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+    element.setAttribute("aria-label", t(element.dataset.i18nAria));
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((element) => {
+    element.setAttribute("title", t(element.dataset.i18nTitle));
+  });
+
+  languageButtons.forEach((button) => {
+    const isActive = button.dataset.langSwitch === currentLanguage;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  updateDesignerViewer();
+}
+
+function routeFromHash() {
+  const route = window.location.hash.replace("#", "");
+  return route || "home";
+}
+
+function showRevealedItems(panel) {
+  panel.querySelectorAll("[data-reveal]").forEach((item) => {
+    item.classList.add("is-visible");
+  });
+}
+
+function setActiveView(view, options = {}) {
+  const viewNames = new Set(viewPanels.map((panel) => panel.dataset.viewPanel));
+  const nextView = viewNames.has(view) ? view : "home";
+
+  body.dataset.view = nextView;
+  viewPanels.forEach((panel) => {
+    const isActive = panel.dataset.viewPanel === nextView;
+    panel.classList.toggle("is-active", isActive);
+    panel.setAttribute("aria-hidden", String(!isActive));
+    if (isActive) showRevealedItems(panel);
+  });
+
+  viewLinks.forEach((link) => {
+    const isActive = link.dataset.viewLink === nextView;
+    link.classList.toggle("is-active", isActive);
+    if (link.tagName === "A") {
+      if (isActive) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    }
+  });
+
+  const nextHash = nextView === "home" ? "" : `#${nextView}`;
+  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+  if (!options.skipHistory && nextUrl !== currentUrl) {
+    const method = options.replace ? "replaceState" : "pushState";
+    window.history[method](null, "", nextUrl);
+  }
+
+  window.scrollTo({ top: 0, behavior: options.instant ? "auto" : "smooth" });
+  updateProgress();
 }
 
 function shuffledIntroOrder(count) {
@@ -119,13 +413,14 @@ function updateBootScreen(value) {
 
 function releaseBootScreen() {
   if (!bootScreen) return;
+  if (!bootScreen.isConnected) return;
   bootScreen.classList.add("is-exiting");
   body.classList.remove("boot-locked", "is-starting");
   body.classList.add("is-awake");
 
   window.setTimeout(() => {
     bootScreen.remove();
-    toast("ZS_OS 已启动");
+    toast(t("toast.online"));
   }, 720);
 }
 
@@ -140,10 +435,19 @@ function runBootIntro() {
   const helloOrder = shuffledIntroOrder(slideCount);
   let step = 0;
   let timer = 0;
+  let released = false;
 
   if (!slideCount) {
     enterSite.disabled = false;
     return;
+  }
+
+  enterSite.disabled = false;
+
+  function exitIntro() {
+    released = true;
+    window.clearTimeout(timer);
+    releaseBootScreen();
   }
 
   function restartAnimatedParts(container) {
@@ -170,6 +474,7 @@ function runBootIntro() {
   }
 
   function showHello(nextStep) {
+    if (released || !bootScreen.isConnected) return;
     step = Math.min(nextStep, slideCount - 1);
     const activeIndex = helloOrder[step] ?? step;
     const activeSequence = helloSequence[activeIndex];
@@ -192,7 +497,8 @@ function runBootIntro() {
     if (step === slideCount - 1) {
       window.clearTimeout(timer);
       window.setTimeout(() => {
-        if (bootStatus) bootStatus.textContent = "你好，欢迎进入 zhangsiyang.co";
+        if (released || !bootScreen.isConnected) return;
+        if (bootStatus) bootStatus.textContent = t("boot.ready");
         enterSite.disabled = false;
         enterSite.focus({ preventScroll: true });
       }, reducedMotion ? 120 : (activeSequence?.hold || 1800));
@@ -207,10 +513,10 @@ function runBootIntro() {
 
   showHello(0);
 
-  enterSite.addEventListener("click", releaseBootScreen);
+  enterSite.addEventListener("click", exitIntro);
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" && !enterSite.disabled && bootScreen.isConnected) {
-      releaseBootScreen();
+    if (event.key === "Enter" && bootScreen.isConnected) {
+      exitIntro();
     }
   });
 }
@@ -233,10 +539,11 @@ function formatNumber(value) {
 
 function updateDesignerLightbox(work, pageNumber, pageTotal) {
   if (!designerLightboxImage || !designerLightboxTitle || !designerLightboxPage) return;
+  const title = workTitle(work);
 
   designerLightboxImage.src = work.pages[activeDesignerPage];
-  designerLightboxImage.alt = `${work.title} 第 ${pageNumber} 页放大图`;
-  designerLightboxTitle.textContent = work.title;
+  designerLightboxImage.alt = currentLanguage === "zh" ? `${title} 第 ${pageNumber} 页放大图` : `${title} page ${pageNumber} enlarged`;
+  designerLightboxTitle.textContent = title;
   designerLightboxPage.textContent = `PAGE ${formatNumber(pageNumber)} / ${formatNumber(pageTotal)}`;
 }
 
@@ -253,18 +560,28 @@ function updateDesignerViewer() {
   activeDesignerPage = Math.min(Math.max(activeDesignerPage, 0), work.pages.length - 1);
   const pageNumber = activeDesignerPage + 1;
   const pageTotal = work.pages.length;
+  const title = workTitle(work);
+  const subtitle = workSubtitle(work);
 
   designerTabs.forEach((tab, index) => {
     const isActive = index === activeDesignerWork;
+    const tabWork = designerWorks[index];
+    const tabTitle = workTitle(tabWork);
+    const tabSubtitle = workSubtitle(tabWork);
+    const titleElement = tab.querySelector("strong");
+    const subtitleElement = tab.querySelector("em");
+
+    if (titleElement) titleElement.textContent = tabTitle;
+    if (subtitleElement) subtitleElement.textContent = tabSubtitle;
     tab.classList.toggle("is-active", isActive);
     tab.setAttribute("aria-selected", String(isActive));
   });
 
   designerImage.src = work.pages[activeDesignerPage];
-  designerImage.alt = `${work.title} 第 ${pageNumber} 页`;
+  designerImage.alt = currentLanguage === "zh" ? `${title} 第 ${pageNumber} 页` : `${title} page ${pageNumber}`;
 
-  if (designerTitle) designerTitle.textContent = work.title;
-  if (designerSubtitle) designerSubtitle.textContent = work.subtitle;
+  if (designerTitle) designerTitle.textContent = title;
+  if (designerSubtitle) designerSubtitle.textContent = subtitle;
   if (designerWorkCount) {
     designerWorkCount.textContent = `${formatNumber(activeDesignerWork + 1)} / ${formatNumber(designerWorks.length)}`;
   }
@@ -341,21 +658,25 @@ document.querySelectorAll("a, button").forEach((item) => {
   item.addEventListener("pointerleave", () => cursor?.classList.remove("is-active"));
 });
 
-document.querySelectorAll("[data-target]").forEach((button) => {
-  button.addEventListener("click", () => {
-    const target = document.querySelector(button.getAttribute("data-target"));
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+viewLinks.forEach((control) => {
+  control.addEventListener("click", (event) => {
+    event.preventDefault();
+    const nextView = control.dataset.viewLink || "home";
+    body.classList.remove("is-starting");
+    body.classList.add("is-awake");
+    setActiveView(nextView);
+    if (control === bootButton) toast(t("toast.boot"));
   });
 });
 
-bootButton?.addEventListener("click", () => {
-  body.classList.remove("is-starting");
-  body.classList.add("is-awake");
-  bootButton.textContent = "系统已启动";
-  toast("zhangsiyang.co 已启动");
-  window.setTimeout(() => {
-    document.querySelector("#story")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 520);
+languageButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    applyLanguage(button.dataset.langSwitch);
+  });
+});
+
+window.addEventListener("popstate", () => {
+  setActiveView(routeFromHash(), { skipHistory: true, instant: true });
 });
 
 window.addEventListener("scroll", updateProgress, { passive: true });
@@ -372,10 +693,11 @@ copyDomain?.addEventListener("click", async () => {
     document.execCommand("copy");
     area.remove();
   }
-  toast("域名已复制");
+  toast(t("toast.domain"));
 });
 
+applyLanguage("en");
+setActiveView(routeFromHash(), { replace: true, instant: true });
 runBootIntro();
 loadPhotoFrames();
-updateDesignerViewer();
 updateProgress();

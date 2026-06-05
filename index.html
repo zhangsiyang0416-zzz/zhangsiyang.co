@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en" data-lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,9 +11,9 @@
     <meta property="og:url" content="https://zhangsiyang.co/">
     <meta name="theme-color" content="#0608ff">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=profile-intro-20260605">
+    <link rel="stylesheet" href="styles.css?v=os-views-i18n-20260605">
   </head>
-  <body class="is-starting boot-locked">
+  <body class="is-starting boot-locked" data-view="home">
     <section class="boot-screen" id="bootScreen" aria-labelledby="bootTitle">
       <div class="boot-grid" aria-hidden="true"></div>
       <div class="boot-card hello-boot">
@@ -140,12 +140,12 @@
           </svg>
         </div>
         <h1 class="boot-title" id="bootTitle">Zhang Siyang</h1>
-        <div class="boot-track" aria-label="启动进度">
+        <div class="boot-track" aria-label="Boot progress" data-i18n-aria="boot.progress">
           <span id="bootProgress"></span>
         </div>
         <p class="boot-status" id="bootStatus">English / waking personal OS</p>
-        <button class="boot-enter" id="enterSite" type="button" disabled>
-          进入 zhangsiyang.co
+        <button class="boot-enter" id="enterSite" type="button" data-i18n="boot.enter">
+          Enter / Skip intro
         </button>
       </div>
     </section>
@@ -154,113 +154,119 @@
     <div class="progress" aria-hidden="true"><span></span></div>
 
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="回到首页">
+      <a class="wordmark" href="#top" aria-label="Back to home" data-view-link="home" data-i18n-aria="wordmark.aria">
         <span>ZS</span>
         <span>zhangsiyang.co</span>
       </a>
-      <nav aria-label="主导航">
-        <a href="#story">经历</a>
-        <a href="#work">项目</a>
-        <a href="#atlas">照片</a>
-        <a href="#thinker">思考</a>
-        <a href="#resume">简历</a>
-        <a href="#contact">联系</a>
-      </nav>
+      <div class="header-actions">
+        <nav aria-label="Main navigation" data-i18n-aria="nav.aria">
+          <a href="#story" data-view-link="story" data-i18n="nav.story">Explorer</a>
+          <a href="#work" data-view-link="work" data-i18n="nav.work">Designer</a>
+          <a href="#atlas" data-view-link="atlas" data-i18n="nav.atlas">Photos</a>
+          <a href="#thinker" data-view-link="thinker" data-i18n="nav.thinker">Thinker</a>
+          <a href="#resume" data-view-link="resume" data-i18n="nav.resume">Resume</a>
+          <a href="#contact" data-view-link="contact" data-i18n="nav.contact">Contact</a>
+        </nav>
+        <div class="language-switch" aria-label="Language switcher" data-i18n-aria="language.aria">
+          <button class="is-active" type="button" data-lang-switch="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang-switch="zh" aria-pressed="false">中</button>
+        </div>
+      </div>
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
+      <section class="hero is-active" aria-labelledby="hero-title" data-view-panel="home">
         <div class="hero-art" aria-hidden="true">
           <div class="hero-art-noise"></div>
         </div>
 
         <div class="hero-copy" data-reveal>
-          <p class="kicker">Designer / Explorer / Thinker</p>
+          <p class="kicker" data-i18n="hero.kicker">Designer / Explorer / Thinker</p>
           <h1 id="hero-title">Zhang<br>Siyang</h1>
-          <p class="hero-lead">
+          <p class="hero-lead" data-i18n="hero.lead">
             Architecture dual-degree student across XJTU and Politecnico di Milano, mapping public space,
             sustainable cities, and 30-country field notes into one living archive.
           </p>
           <div class="hero-profile" aria-label="Basic profile">
             <article data-code="EDU_01">
-              <span>Education</span>
+              <span data-i18n="hero.education.label">Education</span>
               <strong>
-                Architecture dual degree
-                <em>Xi'an Jiaotong University / Politecnico di Milano</em>
+                <b data-i18n="hero.education.title">Architecture dual degree</b>
+                <em data-i18n="hero.education.detail">Xi'an Jiaotong University / Politecnico di Milano</em>
               </strong>
             </article>
             <article data-code="CITY_02">
-              <span>Focus</span>
-              <strong>Urban renewal / Public space / Sustainable design</strong>
+              <span data-i18n="hero.focus.label">Focus</span>
+              <strong data-i18n="hero.focus.detail">Urban renewal / Public space / Sustainable design</strong>
             </article>
             <article data-code="LOG_30">
-              <span>Explorer</span>
-              <strong>30 countries and counting</strong>
+              <span data-i18n="hero.explorer.label">Explorer</span>
+              <strong data-i18n="hero.explorer.detail">30 countries and counting</strong>
             </article>
           </div>
-          <p class="hero-motto">Keep Thinking, Keep Designing, Keep Exploring.</p>
+          <p class="hero-motto" data-i18n="hero.motto">Keep Thinking, Keep Designing, Keep Exploring.</p>
           <div class="hero-actions">
-            <button class="button primary" type="button" id="bootButton">开机进入</button>
-            <a class="button ghost" href="#atlas">先看照片墙</a>
+            <button class="button primary" type="button" id="bootButton" data-view-link="story" data-i18n="hero.boot">Boot Explorer</button>
+            <a class="button ghost" href="#atlas" data-view-link="atlas" data-i18n="hero.photos">Open Photo Atlas</a>
           </div>
         </div>
 
         <div class="desktop-shell" data-reveal>
           <div class="desktop-topbar">
             <span>ZHANGSIYANG_OS</span>
-            <span class="signal">LIVE</span>
+            <span class="signal" data-i18n="desktop.live">LIVE</span>
           </div>
           <div class="terminal-window" aria-live="polite">
             <div class="window-title">
-              <span>BOOT_SEQUENCE.log</span>
+              <span data-i18n="terminal.title">BOOT_SEQUENCE.log</span>
               <span>01</span>
             </div>
             <div class="terminal-lines">
-              <p>&gt; loading story modules...</p>
-              <p>&gt; mounting designer archive...</p>
-              <p>&gt; scanning explorer photos...</p>
-              <p>&gt; profile kernel: architecture / XJTU / Politecnico di Milano</p>
-              <p>&gt; summer exchange: UC Berkeley / sustainable cities</p>
-              <p>&gt; travel log: 30 countries indexed</p>
-              <p>&gt; opening thinker notes...</p>
-              <p class="terminal-ready">ready: zhangsiyang.co</p>
+              <p data-i18n="terminal.story">&gt; loading story modules...</p>
+              <p data-i18n="terminal.designer">&gt; mounting designer archive...</p>
+              <p data-i18n="terminal.photos">&gt; scanning explorer photos...</p>
+              <p data-i18n="terminal.profile">&gt; profile kernel: architecture / XJTU / Politecnico di Milano</p>
+              <p data-i18n="terminal.exchange">&gt; summer exchange: UC Berkeley / sustainable cities</p>
+              <p data-i18n="terminal.travel">&gt; travel log: 30 countries indexed</p>
+              <p data-i18n="terminal.thinker">&gt; opening thinker notes...</p>
+              <p class="terminal-ready" data-i18n="terminal.ready">ready: zhangsiyang.co</p>
             </div>
           </div>
-          <div class="profile-kernel" aria-label="Profile kernel">
-            <span>PROFILE_KERNEL</span>
-            <strong>Designer. Explorer. Thinker.</strong>
-            <p>
+          <div class="profile-kernel" aria-label="Profile kernel" data-i18n-aria="profileKernel.aria">
+            <span data-i18n="profileKernel.label">PROFILE_KERNEL</span>
+            <strong data-i18n="profileKernel.title">Designer. Explorer. Thinker.</strong>
+            <p data-i18n="profileKernel.body">
               Studying architecture across Xi'an Jiaotong University and Politecnico di Milano, extending design
               research through UC Berkeley summer exchange work, and collecting the world through 30 countries of
               travel.
             </p>
           </div>
-          <div class="app-grid" aria-label="网站模块">
-            <button class="app-icon" type="button" data-target="#story">
+          <div class="app-grid" aria-label="Site modules" data-i18n-aria="app.aria">
+            <button class="app-icon" type="button" data-view-link="story">
               <span>01</span>
-              <strong>Explorer</strong>
+              <strong data-i18n="app.story">Explorer</strong>
             </button>
-            <button class="app-icon" type="button" data-target="#work">
+            <button class="app-icon" type="button" data-view-link="work">
               <span>02</span>
-              <strong>Designer</strong>
+              <strong data-i18n="app.work">Designer</strong>
             </button>
-            <button class="app-icon accent" type="button" data-target="#atlas">
+            <button class="app-icon accent" type="button" data-view-link="atlas">
               <span>03</span>
-              <strong>Photos</strong>
+              <strong data-i18n="app.atlas">Photos</strong>
             </button>
-            <button class="app-icon" type="button" data-target="#thinker">
+            <button class="app-icon" type="button" data-view-link="thinker">
               <span>04</span>
-              <strong>Thinker</strong>
+              <strong data-i18n="app.thinker">Thinker</strong>
             </button>
-            <button class="app-icon warm" type="button" data-target="#resume">
+            <button class="app-icon warm" type="button" data-view-link="resume">
               <span>05</span>
-              <strong>Resume</strong>
+              <strong data-i18n="app.resume">Resume</strong>
             </button>
           </div>
         </div>
       </section>
 
-      <section class="ticker" aria-label="网站关键词">
+      <section class="ticker" aria-label="Site keywords" data-i18n-aria="ticker.aria">
         <div>
           <span>designer</span>
           <span>explorer</span>
@@ -279,77 +285,77 @@
         </div>
       </section>
 
-      <section id="story" class="section story-grid">
+      <section id="story" class="section story-grid" data-view-panel="story">
         <div class="section-label" data-reveal>
-          <p class="kicker">01 / I am an Explorer</p>
-          <h2>经历是地图，照片是坐标。</h2>
+          <p class="kicker" data-i18n="story.kicker">01 / I am an Explorer</p>
+          <h2 data-i18n="story.title">Experience is a map. Photos are coordinates.</h2>
         </div>
         <div class="story-copy" data-reveal>
-          <p>
-            这里会放你的个人经历、旅行、生活照片和正在展开的世界。等真实素材进来，它会变成一条可以被别人进入的路径。
+          <p data-i18n="story.body">
+            This interface collects my education, travel, living archive, and the world I keep building through design.
           </p>
           <div class="fact-grid">
             <article>
-              <span>Current mode</span>
-              <strong>Explorer</strong>
+              <span data-i18n="story.fact.mode.label">Current mode</span>
+              <strong data-i18n="story.fact.mode.value">Explorer</strong>
             </article>
             <article>
-              <span>Website goal</span>
-              <strong>60 秒认识你</strong>
+              <span data-i18n="story.fact.goal.label">Website goal</span>
+              <strong data-i18n="story.fact.goal.value">Know me in 60 seconds</strong>
             </article>
             <article>
-              <span>Archive</span>
-              <strong>经历、项目、照片、生活</strong>
+              <span data-i18n="story.fact.archive.label">Archive</span>
+              <strong data-i18n="story.fact.archive.value">Experience / Projects / Photos / Life</strong>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section timeline">
+      <section class="section timeline" data-view-panel="story">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">02 / Timeline</p>
-          <h2>人生不是一张表，是一条可展开的线。</h2>
+          <p class="kicker" data-i18n="timeline.kicker">02 / Timeline</p>
+          <h2 data-i18n="timeline.title">Life is not a table. It is an expandable line.</h2>
         </div>
         <div class="timeline-list">
           <article data-reveal>
             <span class="year">2026</span>
             <div>
-              <h3>zhangsiyang.co 上线</h3>
-              <p>第一版先把入口、结构和风格打好，后面继续把真实经历、作品和照片装进去。</p>
+              <h3 data-i18n="timeline.site.title">zhangsiyang.co goes live</h3>
+              <p data-i18n="timeline.site.body">The first version builds the entrance, structure, and visual system. Real stories, works, and photos keep moving in.</p>
             </div>
           </article>
           <article data-reveal>
             <span class="year">2025</span>
             <div>
-              <h3>经历与项目节点</h3>
-              <p>这里放学习、工作、项目、课程、竞赛或任何值得被看到的转折。</p>
+              <h3 data-i18n="timeline.project.title">Experience and project nodes</h3>
+              <p data-i18n="timeline.project.body">A place for study, work, studio projects, competitions, courses, and the turns worth remembering.</p>
             </div>
           </article>
           <article data-reveal>
             <span class="year">Past</span>
             <div>
-              <h3>旅行和生活档案</h3>
-              <p>把大量照片变成有节奏的视觉故事，而不是普通网盘相册。</p>
+              <h3 data-i18n="timeline.travel.title">Travel and life archive</h3>
+              <p data-i18n="timeline.travel.body">Turning a large photo collection into a visual story with rhythm, not a storage dump.</p>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="work" class="section work-section">
+      <section id="work" class="section work-section" data-view-panel="work">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">03 / I am a Designer</p>
-          <h2>个人项目</h2>
+          <p class="kicker" data-i18n="work.kicker">03 / I am a Designer</p>
+          <h2 data-i18n="work.title">Personal Projects</h2>
         </div>
 
         <div class="designer-viewer" data-reveal>
-          <aside class="designer-menu" aria-label="作品目录">
+          <aside class="designer-menu" aria-label="Works directory" data-i18n-aria="work.menu.aria">
             <div class="designer-cover">
               <span>2026</span>
               <h3>I AM A DESIGNER</h3>
               <em>ZHANG SIYANG PORTFOLIO</em>
             </div>
 
-            <div class="designer-list" role="tablist" aria-label="Designer works">
+            <div class="designer-list" role="tablist" aria-label="Designer works" data-i18n-aria="work.tabs.aria">
               <button class="designer-tab is-active" type="button" role="tab" aria-selected="true" data-work-index="0">
                 <span>01</span>
                 <strong>Pop Art Poster</strong>
@@ -358,32 +364,32 @@
               </button>
               <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="1">
                 <span>02</span>
-                <strong>三学街历史文化街区青旅设计</strong>
-                <em>Sanxuejie Historic District Youth Hostel Design</em>
+                <strong>Sanxuejie Historic District Youth Hostel Design</strong>
+                <em>三学街历史文化街区青旅设计</em>
                 <b>3 PAGES</b>
               </button>
               <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="2">
                 <span>03</span>
-                <strong>咸阳历史文化街区泛博物馆拼接改造</strong>
-                <em>Xianyang Historic District Pan-Museum Renewal</em>
+                <strong>Xianyang Historic District Pan-Museum Renewal</strong>
+                <em>咸阳历史文化街区泛博物馆拼接改造</em>
                 <b>7 PAGES</b>
               </button>
               <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="3">
                 <span>04</span>
-                <strong>建筑技术设计</strong>
-                <em>Architectural Technology Design</em>
+                <strong>Architectural Technology Design</strong>
+                <em>建筑技术设计</em>
                 <b>6 PAGES</b>
               </button>
               <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="4">
                 <span>05</span>
-                <strong>湿地建筑设计</strong>
-                <em>Wetland Architecture Design</em>
+                <strong>Wetland Architecture Design</strong>
+                <em>湿地建筑设计</em>
                 <b>2 PAGES</b>
               </button>
               <button class="designer-tab" type="button" role="tab" aria-selected="false" data-work-index="5">
                 <span>06</span>
-                <strong>钢结构楼梯设计</strong>
-                <em>Steel Structure Stair Design</em>
+                <strong>Steel Structure Stair Design</strong>
+                <em>钢结构楼梯设计</em>
                 <b>2 PAGES</b>
               </button>
             </div>
@@ -397,23 +403,23 @@
             </div>
 
             <div class="designer-stage">
-              <button class="designer-page-button" id="designerPrevPage" type="button" aria-label="上一页" title="上一页">‹</button>
+              <button class="designer-page-button" id="designerPrevPage" type="button" aria-label="Previous page" title="Previous page" data-i18n-aria="work.prev" data-i18n-title="work.prev">‹</button>
               <div class="designer-image-frame">
-                <img id="designerImage" src="assets/works/pop-art-poster-page-1.jpg" alt="Pop Art Poster 第 1 页">
+                <img id="designerImage" src="assets/works/pop-art-poster-page-1.jpg" alt="Pop Art Poster page 1">
               </div>
-              <button class="designer-page-button" id="designerNextPage" type="button" aria-label="下一页" title="下一页">›</button>
+              <button class="designer-page-button" id="designerNextPage" type="button" aria-label="Next page" title="Next page" data-i18n-aria="work.next" data-i18n-title="work.next">›</button>
             </div>
 
             <div class="designer-controls">
               <span id="designerPageCount">PAGE 01 / 01</span>
-              <button class="designer-zoom" id="designerOpenLightbox" type="button" aria-label="放大浏览" title="放大浏览">⤢</button>
+              <button class="designer-zoom" id="designerOpenLightbox" type="button" aria-label="Zoom view" title="Zoom view" data-i18n-aria="work.zoom" data-i18n-title="work.zoom">⤢</button>
             </div>
           </article>
         </div>
 
         <div class="designer-lightbox" id="designerLightbox" hidden>
-          <button class="designer-lightbox-close" id="designerCloseLightbox" type="button" aria-label="关闭" title="关闭">×</button>
-          <img id="designerLightboxImage" src="assets/works/pop-art-poster-page-1.jpg" alt="Pop Art Poster 第 1 页放大图">
+          <button class="designer-lightbox-close" id="designerCloseLightbox" type="button" aria-label="Close" title="Close" data-i18n-aria="work.close" data-i18n-title="work.close">×</button>
+          <img id="designerLightboxImage" src="assets/works/pop-art-poster-page-1.jpg" alt="Pop Art Poster page 1 enlarged">
           <div class="designer-lightbox-meta">
             <strong id="designerLightboxTitle">Pop Art Poster</strong>
             <span id="designerLightboxPage">PAGE 01 / 01</span>
@@ -421,78 +427,78 @@
         </div>
       </section>
 
-      <section id="atlas" class="atlas">
+      <section id="atlas" class="atlas" data-view-panel="atlas">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">04 / I am an Explorer</p>
-          <h2>Photo Atlas</h2>
+          <p class="kicker" data-i18n="atlas.kicker">04 / I am an Explorer</p>
+          <h2 data-i18n="atlas.title">Photo Atlas</h2>
         </div>
         <div class="photo-wall">
           <figure class="photo-tile large photo-frame" data-src="assets/photos/travel-01.jpg" data-reveal>
-            <figcaption>TRAVEL / cover</figcaption>
+            <figcaption data-i18n="atlas.travel">TRAVEL / cover</figcaption>
           </figure>
           <figure class="photo-tile photo-frame" data-src="assets/photos/life-01.jpg" data-reveal>
-            <figcaption>LIFE / moments</figcaption>
+            <figcaption data-i18n="atlas.life">LIFE / moments</figcaption>
           </figure>
           <figure class="photo-tile tall photo-frame" data-src="assets/photos/city-01.jpg" data-reveal>
-            <figcaption>CITY / map</figcaption>
+            <figcaption data-i18n="atlas.city">CITY / map</figcaption>
           </figure>
           <figure class="photo-tile photo-frame" data-src="assets/photos/food-01.jpg" data-reveal>
-            <figcaption>TABLE / food</figcaption>
+            <figcaption data-i18n="atlas.food">TABLE / food</figcaption>
           </figure>
           <figure class="photo-tile wide photo-frame" data-src="assets/photos/friends-01.jpg" data-reveal>
-            <figcaption>PEOPLE / friends</figcaption>
+            <figcaption data-i18n="atlas.people">PEOPLE / friends</figcaption>
           </figure>
         </div>
       </section>
 
-      <section id="thinker" class="section thinker-section">
+      <section id="thinker" class="section thinker-section" data-view-panel="thinker">
         <div class="section-label wide" data-reveal>
-          <p class="kicker">05 / I am a Thinker</p>
-          <h2>个人思考 / Life Notes</h2>
+          <p class="kicker" data-i18n="thinker.kicker">05 / I am a Thinker</p>
+          <h2 data-i18n="thinker.title">Life Notes</h2>
         </div>
         <div class="thinker-panel" data-reveal>
           <span>THINKING INDEX</span>
-          <p>建筑、城市、旅行、学习、人生分享，都会慢慢归档到这里。</p>
+          <p data-i18n="thinker.body">Architecture, cities, travel, learning, and life reflections will be archived here as the system grows.</p>
         </div>
       </section>
 
-      <section id="resume" class="section resume">
+      <section id="resume" class="section resume" data-view-panel="resume">
         <div class="section-label" data-reveal>
-          <p class="kicker">06 / Resume</p>
-          <h2>简历入口，先搭好。</h2>
+          <p class="kicker" data-i18n="resume.kicker">06 / Resume</p>
+          <h2 data-i18n="resume.title">Resume interface, ready to expand.</h2>
         </div>
         <div class="resume-panel" data-reveal>
           <div class="resume-intro">
-            <p>
-              这里会变成你的简历系统：教育背景、工作经历、项目经历、技能、奖项、证书和下载入口。等你给我真实材料，我会同时整理网页版和 PDF 下载版。
+            <p data-i18n="resume.body">
+              This will become my resume system: education, work experience, projects, skills, awards, certificates, and a downloadable version.
             </p>
-            <a class="button primary" href="assets/resume/README.md">查看简历素材位</a>
+            <a class="button primary" href="assets/resume/README.md" data-i18n="resume.button">Open resume material slot</a>
           </div>
           <dl class="resume-list">
             <div>
-              <dt>Education</dt>
-              <dd>待填：学校、专业、时间、亮点</dd>
+              <dt data-i18n="resume.education.label">Education</dt>
+              <dd data-i18n="resume.education">To fill: schools, major, time, highlights</dd>
             </div>
             <div>
-              <dt>Experience</dt>
-              <dd>待填：公司/项目、职位、贡献、结果</dd>
+              <dt data-i18n="resume.experience.label">Experience</dt>
+              <dd data-i18n="resume.experience">To fill: studios, roles, contribution, outcomes</dd>
             </div>
             <div>
-              <dt>Skills</dt>
-              <dd>待填：语言、工具、AI 协作能力、作品链接</dd>
+              <dt data-i18n="resume.skills.label">Skills</dt>
+              <dd data-i18n="resume.skills">To fill: languages, tools, AI collaboration, work links</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      <section id="contact" class="contact">
+      <section id="contact" class="contact" data-view-panel="contact">
         <div data-reveal>
-          <p class="kicker">07 / Contact</p>
-          <h2>下一步，把真实内容塞进去。</h2>
-          <p>把你的经历、简历、照片文件夹发来，我就能继续把这个框架变成完整版。</p>
+          <p class="kicker" data-i18n="contact.kicker">07 / Contact</p>
+          <h2 data-i18n="contact.title">Next step: feed the system with real material.</h2>
+          <p data-i18n="contact.body">Send experiences, resume material, and photo folders, and this framework can keep growing into a complete public archive.</p>
         </div>
         <div class="contact-actions" data-reveal>
-          <button class="button primary" type="button" id="copyDomain">复制域名</button>
+          <button class="button primary" type="button" id="copyDomain" data-i18n="contact.copy">Copy domain</button>
           <a class="button ghost" href="mailto:hello@zhangsiyang.co">hello@zhangsiyang.co</a>
         </div>
       </section>
@@ -500,9 +506,9 @@
 
     <footer>
       <span>© 2026 Zhang Siyang</span>
-      <span>Built for zhangsiyang.co</span>
+      <span data-i18n="footer.built">Built for zhangsiyang.co</span>
     </footer>
 
-    <script src="script.js?v=designer-viewer-20260605"></script>
+    <script src="script.js?v=os-views-i18n-20260605"></script>
   </body>
 </html>
