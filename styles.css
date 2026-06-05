@@ -637,11 +637,11 @@ nav a:hover {
   display: grid;
   grid-template-columns: minmax(0, 0.94fr) minmax(370px, 0.86fr);
   gap: 34px;
-  align-items: end;
+  align-items: start;
   width: min(1180px, calc(100% - 28px));
   min-height: calc(100vh - 48px);
   margin: 0 auto;
-  padding: 126px 0 72px;
+  padding: 112px 0 72px;
 }
 
 .hero-art {
@@ -700,6 +700,11 @@ h1 {
   text-shadow: 6px 6px 0 rgba(255, 66, 214, 0.72), 11px 11px 0 rgba(72, 244, 255, 0.32);
 }
 
+.hero h1 {
+  margin-bottom: 22px;
+  font-size: clamp(74px, 10.4vw, 150px);
+}
+
 h2 {
   margin-bottom: 18px;
   font-size: clamp(38px, 7vw, 92px);
@@ -717,8 +722,119 @@ h3 {
 .hero-lead {
   max-width: 680px;
   color: #f3efd9;
-  font-size: clamp(19px, 2vw, 25px);
+  font-size: clamp(18px, 1.55vw, 22px);
+  line-height: 1.46;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+}
+
+.hero-profile {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 760px;
+  margin-top: 24px;
+  perspective: 900px;
+}
+
+.hero-profile article {
+  position: relative;
+  min-height: 132px;
+  padding: 17px 14px 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 249, 232, 0.18);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(186, 255, 41, 0.26), transparent 30%),
+    linear-gradient(135deg, rgba(72, 244, 255, 0.17), transparent 42%),
+    rgba(5, 5, 12, 0.64);
+  box-shadow: 6px 6px 0 rgba(255, 66, 214, 0.22), inset 0 0 0 1px rgba(255, 249, 232, 0.06);
+  backdrop-filter: blur(14px);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  transform: rotateX(0deg) rotateZ(-0.45deg);
+}
+
+.hero-profile article:nth-child(2) {
+  transform: translateY(10px) rotateZ(0.35deg);
+}
+
+.hero-profile article:nth-child(3) {
+  transform: translateY(-2px) rotateZ(-0.2deg);
+}
+
+.hero-profile article::before {
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  z-index: 1;
+  color: rgba(186, 255, 41, 0.72);
+  content: attr(data-code);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.hero-profile article::after {
+  position: absolute;
+  inset: auto -20% -38% 18%;
+  height: 108px;
+  background: linear-gradient(90deg, rgba(72, 244, 255, 0.4), rgba(255, 66, 214, 0.34), rgba(186, 255, 41, 0.28));
+  clip-path: polygon(0 30%, 100% 0, 86% 100%, 10% 78%);
+  content: "";
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+.hero-profile span,
+.profile-kernel span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--cyan);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero-profile strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  color: var(--ink);
+  font-size: clamp(14px, 1.18vw, 17px);
+  line-height: 1.22;
+}
+
+.hero-profile strong em {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.88em;
+  line-height: 1.26;
+}
+
+.hero-motto {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: var(--acid);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(13px, 1.45vw, 18px);
+  font-weight: 900;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(186, 255, 41, 0.36);
+}
+
+.hero-motto::before {
+  display: inline-block;
+  width: 42px;
+  height: 2px;
+  margin-right: 10px;
+  background: linear-gradient(90deg, var(--hot), var(--cyan), var(--acid));
+  content: "";
+  vertical-align: middle;
+  box-shadow: 0 0 18px rgba(72, 244, 255, 0.38);
 }
 
 .hero-actions,
@@ -807,10 +923,10 @@ h3 {
 }
 
 .terminal-lines {
-  min-height: 206px;
+  min-height: 188px;
   padding: 22px;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: clamp(14px, 1.6vw, 18px);
+  font-size: clamp(13px, 1.42vw, 16px);
 }
 
 .terminal-lines p {
@@ -819,6 +935,47 @@ h3 {
 
 .terminal-ready {
   color: var(--acid);
+}
+
+.profile-kernel {
+  position: relative;
+  margin: 0 16px 16px;
+  padding: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 249, 232, 0.15);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 66, 214, 0.18), transparent 42%),
+    rgba(255, 249, 232, 0.065);
+}
+
+.profile-kernel::after {
+  position: absolute;
+  inset: auto -12% -58% 48%;
+  width: 220px;
+  height: 180px;
+  border: 2px solid rgba(72, 244, 255, 0.2);
+  content: "";
+  transform: rotate(18deg);
+}
+
+.profile-kernel strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: 6px;
+  font-size: clamp(18px, 2vw, 25px);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.profile-kernel p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.42;
 }
 
 .app-grid {
@@ -2034,6 +2191,15 @@ footer {
     padding-top: 152px;
   }
 
+  .hero-profile {
+    grid-template-columns: 1fr;
+    max-width: 720px;
+  }
+
+  .hero-profile article {
+    min-height: auto;
+  }
+
   .desktop-shell {
     max-width: 720px;
   }
@@ -2091,6 +2257,19 @@ footer {
   h1 {
     font-size: 72px;
     text-shadow: 4px 4px 0 rgba(255, 66, 214, 0.72), 8px 8px 0 rgba(72, 244, 255, 0.3);
+  }
+
+  .hero-profile {
+    gap: 8px;
+  }
+
+  .hero-profile article,
+  .profile-kernel {
+    padding: 14px;
+  }
+
+  .hero-motto {
+    font-size: 13px;
   }
 
   .button,
