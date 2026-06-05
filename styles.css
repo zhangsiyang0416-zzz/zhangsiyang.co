@@ -898,8 +898,8 @@ h3 {
 
 .contact-details {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: minmax(280px, 1.12fr) repeat(2, minmax(220px, 0.94fr));
+  gap: 16px;
 }
 
 .contact-card {
@@ -918,6 +918,20 @@ h3 {
   box-shadow: 8px 8px 0 rgba(186, 255, 41, 0.12), var(--shadow);
   backdrop-filter: blur(14px);
   transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease;
+}
+
+.contact-card::after {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(72, 244, 255, 0.2);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(186, 255, 41, 0.2), transparent 62%);
+  content: "";
+  opacity: 0.72;
+  filter: blur(0.2px);
 }
 
 .contact-card::before {
@@ -948,8 +962,22 @@ h3 {
   display: block;
   margin-top: 26px;
   overflow-wrap: anywhere;
-  font-size: clamp(18px, 2vw, 26px);
+  font-size: clamp(18px, 1.7vw, 24px);
   line-height: 1.08;
+}
+
+.contact-card-email strong {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(16px, 1.45vw, 21px);
+  letter-spacing: 0;
+}
+
+.contact-card-phone strong {
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-size: clamp(17px, 1.5vw, 21px);
 }
 
 .contact-card em {
@@ -2371,12 +2399,19 @@ body[data-view="home"] footer {
     max-width: 720px;
   }
 
+  .contact-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-card-email {
+    grid-column: 1 / -1;
+  }
+
   .fact-grid,
   .work-grid,
   .folio-launch,
   .designer-viewer,
-  .portfolio-grid,
-  .contact-details {
+  .portfolio-grid {
     grid-template-columns: 1fr;
   }
 
@@ -2452,6 +2487,14 @@ body[data-view="home"] footer {
   .hero-actions,
   .contact-actions {
     width: 100%;
+  }
+
+  .contact-details {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card-email {
+    grid-column: auto;
   }
 
   .app-grid {

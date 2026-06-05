@@ -268,7 +268,7 @@ const translations = {
     "resume.skills.label": "技能",
     "resume.skills": "待填：语言、工具、AI 协作能力、作品链接",
     "contact.kicker": "07 / 联系",
-    "contact.title": "联系方式，随时在线。",
+    "contact.title": "联系",
     "contact.body": "如果想聊合作、作品集、旅行、设计笔记或新的想法，可以通过这里联系我。",
     "contact.email.label": "邮箱",
     "contact.email.note": "主要邮箱",
