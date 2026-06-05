@@ -891,6 +891,75 @@ h3 {
   margin-top: 32px;
 }
 
+.contact {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.contact-card {
+  position: relative;
+  min-height: 158px;
+  padding: 22px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 249, 232, 0.18);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(72, 244, 255, 0.14), transparent 42%),
+    linear-gradient(315deg, rgba(255, 66, 214, 0.14), transparent 46%),
+    var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 8px 8px 0 rgba(186, 255, 41, 0.12), var(--shadow);
+  backdrop-filter: blur(14px);
+  transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease;
+}
+
+.contact-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--acid), var(--cyan), var(--hot));
+  content: "";
+  opacity: 0.88;
+}
+
+.contact-card:hover {
+  transform: translate(-2px, -2px);
+  border-color: rgba(186, 255, 41, 0.55);
+  box-shadow: 11px 11px 0 rgba(255, 66, 214, 0.18), var(--shadow);
+}
+
+.contact-card span {
+  color: var(--acid);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.contact-card strong {
+  display: block;
+  margin-top: 26px;
+  overflow-wrap: anywhere;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.08;
+}
+
+.contact-card em {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 760;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -2306,7 +2375,8 @@ body[data-view="home"] footer {
   .work-grid,
   .folio-launch,
   .designer-viewer,
-  .portfolio-grid {
+  .portfolio-grid,
+  .contact-details {
     grid-template-columns: 1fr;
   }
 
