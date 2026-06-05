@@ -152,6 +152,8 @@ const translations = {
     "atlas.people": "PEOPLE / friends",
     "thinker.kicker": "05 / I am a Thinker",
     "thinker.title": "Life Notes",
+    "thinker.signature.label": "Keep Thinking / Chinese name",
+    "thinker.signature.meaning": "Si: thinking. Yang: open and inclusive like the ocean.",
     "thinker.body": "Architecture, cities, travel, learning, and life reflections will be archived here as the system grows.",
     "resume.kicker": "06 / Resume",
     "resume.title": "Resume interface, ready to expand.",
@@ -262,6 +264,8 @@ const translations = {
     "atlas.people": "朋友 / 人物",
     "thinker.kicker": "05 / 我是思考者",
     "thinker.title": "个人思考 / Life Notes",
+    "thinker.signature.label": "Keep Thinking / 中文名",
+    "thinker.signature.meaning": "思是思考，洋是如海洋般开放与包容。",
     "thinker.body": "建筑、城市、旅行、学习、人生分享，都会慢慢归档到这里。",
     "resume.kicker": "06 / 简历",
     "resume.title": "简历界面，先搭好。",
@@ -351,6 +355,21 @@ function showRevealedItems(panel) {
   });
 }
 
+function restartNameHandwriting(panel) {
+  const animatedParts = panel.querySelectorAll(".thinker-name-identity .name-identity-write, .thinker-name-identity .name-identity-pen");
+  if (!animatedParts.length) return;
+
+  animatedParts.forEach((part) => {
+    part.style.animation = "none";
+  });
+
+  void panel.getBoundingClientRect();
+
+  animatedParts.forEach((part) => {
+    part.style.animation = "";
+  });
+}
+
 function setActiveView(view, options = {}) {
   const viewNames = new Set(viewPanels.map((panel) => panel.dataset.viewPanel));
   const nextView = viewNames.has(view) ? view : "home";
@@ -361,6 +380,7 @@ function setActiveView(view, options = {}) {
     panel.classList.toggle("is-active", isActive);
     panel.setAttribute("aria-hidden", String(!isActive));
     if (isActive) showRevealedItems(panel);
+    if (isActive && nextView === "thinker") restartNameHandwriting(panel);
   });
 
   viewLinks.forEach((link) => {
