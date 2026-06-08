@@ -91,15 +91,15 @@ const travelPhotos = [
     caption: { en: "The cliff that defines the Bali memory.", zh: "巴厘岛记忆里最有辨识度的海崖。" }
   },
   {
-    src: "assets/travel/indonesia/kelingking-couple-03.jpg",
+    src: "assets/travel/indonesia/bali-sunset-silhouette.jpg",
     type: "memory",
-    size: "wide",
-    position: "center 34%",
+    size: "tall",
+    position: "center 48%",
     captionSide: "right",
     country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Nusa Penida / Kelingking Beach", zh: "佩尼达岛 / 精灵坠崖" },
-    title: { en: "Together at Kelingking", zh: "精灵坠崖前的合影" },
-    caption: { en: "A landmark is stronger when the people belong in the frame.", zh: "有些地标，和重要的人一起出现才完整。" }
+    place: { en: "Bali / seaside sunset", zh: "巴厘岛 / 海边日落" },
+    title: { en: "Bali sunset silhouettes", zh: "巴厘岛日落背影" },
+    caption: { en: "A quiet nightfall memory above the water.", zh: "海面之上的安静黄昏记忆。" }
   },
   {
     src: "assets/travel/indonesia/nusa-penida-coastline.jpg",
