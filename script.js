@@ -25,22 +25,8 @@ const designerLightboxImage = document.querySelector("#designerLightboxImage");
 const designerLightboxTitle = document.querySelector("#designerLightboxTitle");
 const designerLightboxPage = document.querySelector("#designerLightboxPage");
 const designerCloseLightbox = document.querySelector("#designerCloseLightbox");
-const travelGallery = document.querySelector("#travelGallery");
-const atlasCount = document.querySelector("#atlasCount");
-const travelFilterButtons = [...document.querySelectorAll("[data-travel-filter]")];
-const travelLightbox = document.querySelector("#travelLightbox");
-const travelLightboxImage = document.querySelector("#travelLightboxImage");
-const travelLightboxTitle = document.querySelector("#travelLightboxTitle");
-const travelLightboxPlace = document.querySelector("#travelLightboxPlace");
-const travelLightboxIndex = document.querySelector("#travelLightboxIndex");
-const travelCloseLightbox = document.querySelector("#travelCloseLightbox");
-const travelPrevPhoto = document.querySelector("#travelPrevPhoto");
-const travelNextPhoto = document.querySelector("#travelNextPhoto");
 const helloSlides = [...document.querySelectorAll(".hello-slide")];
 const helloSvgs = [...document.querySelectorAll(".hello-svg")];
-if (travelLightbox && travelLightbox.parentElement !== body) {
-  body.appendChild(travelLightbox);
-}
 const helloSequence = [
   { label: "English", status: "English / Apple-style path writing", hold: 4300 },
   { label: "中文", status: "中文 / 正在写入个人世界", hold: 3200 },
@@ -80,99 +66,6 @@ const designerWorks = [
     pages: workPages("steel-stair-design", 2)
   }
 ];
-const travelPhotos = [
-  {
-    src: "assets/travel/indonesia/nusa-penida-kelingking-cliff.jpg",
-    type: "landscape",
-    size: "large",
-    country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Nusa Penida / Kelingking Beach", zh: "佩尼达岛 / 精灵坠崖" },
-    title: { en: "Kelingking Beach from above", zh: "俯瞰精灵坠崖" },
-    caption: { en: "The cliff that defines the Bali memory.", zh: "巴厘岛记忆里最有辨识度的海崖。" }
-  },
-  {
-    src: "assets/travel/indonesia/bali-sunset-silhouette.jpg",
-    type: "memory",
-    size: "tall",
-    position: "center 48%",
-    captionSide: "right",
-    country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Bali / seaside sunset", zh: "巴厘岛 / 海边日落" },
-    title: { en: "Bali sunset silhouettes", zh: "巴厘岛日落背影" },
-    caption: { en: "A quiet nightfall memory above the water.", zh: "海面之上的安静黄昏记忆。" }
-  },
-  {
-    src: "assets/travel/indonesia/nusa-penida-coastline.jpg",
-    type: "landscape",
-    size: "wide",
-    country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Nusa Penida / Broken Beach coastline", zh: "佩尼达岛 / 海岸线" },
-    title: { en: "Blue edge of Nusa Penida", zh: "佩尼达岛的蓝色边界" },
-    caption: { en: "Rock, wind, and hard tropical light.", zh: "礁石、海风和热带强光。" }
-  },
-  {
-    src: "assets/travel/indonesia/kelingking-couple-02.jpg",
-    type: "memory",
-    size: "tall",
-    position: "center 35%",
-    country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Nusa Penida / Kelingking viewpoint", zh: "佩尼达岛 / 精灵坠崖观景台" },
-    title: { en: "A shared horizon", zh: "共同望向海面" },
-    caption: { en: "People and place kept in the same breath.", zh: "把人和地点放进同一段记忆里。" }
-  },
-  {
-    src: "assets/travel/indonesia/kelingking-couple-01.jpg",
-    type: "memory",
-    position: "center 34%",
-    captionSide: "right",
-    country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Nusa Penida / Kelingking Beach", zh: "佩尼达岛 / 精灵坠崖" },
-    title: { en: "Cliffside memory", zh: "海崖边的纪念" },
-    caption: { en: "Not a random selfie: the place is the story.", zh: "不是随手自拍，地点本身就是故事。" }
-  },
-  {
-    src: "assets/travel/indonesia/nusa-penida-memory-wide.jpg",
-    type: "landscape",
-    country: { en: "Indonesia", zh: "印度尼西亚" },
-    place: { en: "Nusa Penida / sea cliff", zh: "佩尼达岛 / 海崖" },
-    title: { en: "Small figures, huge coast", zh: "人在海岸前变小" },
-    caption: { en: "A travel scale shift: body, cliff, ocean.", zh: "身体、海崖、海洋之间的尺度变化。" }
-  },
-  {
-    src: "assets/travel/uae/dubai-fountain-skyline.jpg",
-    type: "landscape",
-    size: "wide",
-    country: { en: "United Arab Emirates", zh: "阿联酋" },
-    place: { en: "Dubai / Dubai Fountain", zh: "迪拜 / 迪拜喷泉" },
-    title: { en: "Fountain under towers", zh: "高塔下的喷泉" },
-    caption: { en: "A city spectacle built from glass, water, and phones.", zh: "玻璃、水幕和手机屏幕组成的城市景观。" }
-  },
-  {
-    src: "assets/travel/uae/dubai-fountain-wide.jpg",
-    type: "landscape",
-    country: { en: "United Arab Emirates", zh: "阿联酋" },
-    place: { en: "Dubai / Downtown Dubai", zh: "迪拜 / 市中心" },
-    title: { en: "Downtown at sunset", zh: "日落时的迪拜市中心" },
-    caption: { en: "The skyline turns into a stage.", zh: "天际线像被推上舞台。" }
-  },
-  {
-    src: "assets/travel/cambodia/phnom-penh-street-day.jpg",
-    type: "landscape",
-    country: { en: "Cambodia", zh: "柬埔寨" },
-    place: { en: "Phnom Penh / street corner", zh: "金边 / 街角" },
-    title: { en: "Street wires and orchids", zh: "电线与花" },
-    caption: { en: "A city detail with tropical pressure.", zh: "热带城市里很有现场感的一角。" }
-  },
-  {
-    src: "assets/travel/cambodia/phnom-penh-street-night.jpg",
-    type: "landscape",
-    country: { en: "Cambodia", zh: "柬埔寨" },
-    place: { en: "Phnom Penh / evening street", zh: "金边 / 夜晚街道" },
-    title: { en: "Phnom Penh after dark", zh: "夜色里的金边" },
-    caption: { en: "Traffic, neon, and humid dusk.", zh: "车流、霓虹和潮湿的黄昏。" }
-  }
-];
-
 const translations = {
   en: {
     "boot.enter": "Enter zhangsiyang.co",
@@ -183,7 +76,6 @@ const translations = {
     "nav.home": "Home",
     "nav.story": "Explorer",
     "nav.work": "Designer",
-    "nav.atlas": "Photos",
     "nav.thinker": "Thinker",
     "nav.resume": "Resume",
     "nav.contact": "Contact",
@@ -203,12 +95,10 @@ const translations = {
     "hero.explorer.detail": "30 countries and counting",
     "hero.motto": "Keep Thinking, Keep Designing, Keep Exploring.",
     "hero.boot": "Boot Explorer",
-    "hero.photos": "Open Photo Atlas",
     "desktop.live": "LIVE",
     "terminal.title": "BOOT_SEQUENCE.log",
     "terminal.story": "> loading story modules...",
     "terminal.designer": "> mounting designer archive...",
-    "terminal.photos": "> scanning explorer photos...",
     "terminal.profile": "> profile kernel: architecture / XJTU / Politecnico di Milano",
     "terminal.exchange": "> summer exchange: UC Berkeley / sustainable cities",
     "terminal.travel": "> travel log: 30 countries indexed",
@@ -221,18 +111,17 @@ const translations = {
     "app.aria": "Site modules",
     "app.story": "Explorer",
     "app.work": "Designer",
-    "app.atlas": "Photos",
     "app.thinker": "Thinker",
     "app.resume": "Resume",
     "story.kicker": "01 / I am an Explorer",
-    "story.title": "Experience is a map. Photos are coordinates.",
+    "story.title": "Experience is a map. The route is still expanding.",
     "story.body": "This interface collects my education, travel, living archive, and the world I keep building through design.",
     "story.fact.mode.label": "Current mode",
     "story.fact.mode.value": "Explorer",
     "story.fact.goal.label": "Website goal",
     "story.fact.goal.value": "Know me in 60 seconds",
     "story.fact.archive.label": "Archive",
-    "story.fact.archive.value": "Experience / Projects / Photos / Life",
+    "story.fact.archive.value": "Experience / Projects / Life",
     "timeline.kicker": "02 / Timeline",
     "timeline.title": "Life is not a table. It is an expandable line.",
     "timeline.site.title": "zhangsiyang.co goes live",
@@ -240,7 +129,7 @@ const translations = {
     "timeline.project.title": "Experience and project nodes",
     "timeline.project.body": "A place for study, work, studio projects, competitions, courses, and the turns worth remembering.",
     "timeline.travel.title": "Travel and life archive",
-    "timeline.travel.body": "Turning a large photo collection into a visual story with rhythm, not a storage dump.",
+    "timeline.travel.body": "A future place for selected travel stories, rebuilt only after the images are chosen carefully.",
     "work.kicker": "03 / I am a Designer",
     "work.title": "Personal Projects",
     "work.menu.aria": "Works directory",
@@ -249,26 +138,12 @@ const translations = {
     "work.next": "Next page",
     "work.zoom": "Zoom view",
     "work.close": "Close",
-    "atlas.kicker": "04 / I am an Explorer",
-    "atlas.title": "Photo Atlas",
-    "atlas.body": "A living travel archive: landscapes first, but memory matters when the place and the people belong together.",
-    "atlas.count.label": "CURRENT EDIT",
-    "atlas.memory.label": "MEMORY RULE",
-    "atlas.memory.value": "Landmarks, landscapes, and meaningful people.",
-    "atlas.filters.aria": "Photo filters",
-    "atlas.filter.all": "All",
-    "atlas.filter.landscape": "Landscape",
-    "atlas.filter.memory": "People / Memory",
-    "atlas.prev": "Previous photo",
-    "atlas.next": "Next photo",
-    "atlas.type.landscape": "Landscape",
-    "atlas.type.memory": "People / Memory",
-    "thinker.kicker": "05 / I am a Thinker",
+    "thinker.kicker": "04 / I am a Thinker",
     "thinker.title": "Life Notes",
     "thinker.signature.label": "Keep Thinking / Chinese name",
     "thinker.signature.meaning": "Si: thinking. Yang: open and inclusive like the ocean.",
     "thinker.body": "Architecture, cities, travel, learning, and life reflections will be archived here as the system grows.",
-    "resume.kicker": "06 / Resume",
+    "resume.kicker": "05 / Resume",
     "resume.title": "Resume interface, ready to expand.",
     "resume.body": "This will become my resume system: education, work experience, projects, skills, awards, certificates, and a downloadable version.",
     "resume.button": "Open resume material slot",
@@ -278,7 +153,7 @@ const translations = {
     "resume.experience": "To fill: studios, roles, contribution, outcomes",
     "resume.skills.label": "Skills",
     "resume.skills": "To fill: languages, tools, AI collaboration, work links",
-    "contact.kicker": "07 / Contact",
+    "contact.kicker": "06 / Contact",
     "contact.title": "Contact signal, always open.",
     "contact.body": "For collaborations, portfolio conversations, travel/design notes, or new ideas, reach me here.",
     "contact.email.label": "Email",
@@ -302,7 +177,6 @@ const translations = {
     "nav.home": "主页",
     "nav.story": "经历",
     "nav.work": "项目",
-    "nav.atlas": "照片",
     "nav.thinker": "思考",
     "nav.resume": "简历",
     "nav.contact": "联系",
@@ -322,12 +196,10 @@ const translations = {
     "hero.explorer.detail": "走过 30 个国家，并且还在继续",
     "hero.motto": "保持思考，保持设计，保持探索。",
     "hero.boot": "开机进入",
-    "hero.photos": "先看照片墙",
     "desktop.live": "在线",
     "terminal.title": "启动序列.log",
     "terminal.story": "> 正在载入经历模块...",
     "terminal.designer": "> 正在挂载设计作品档案...",
-    "terminal.photos": "> 正在扫描旅行照片...",
     "terminal.profile": "> 个人内核：建筑 / 西安交大 / 米兰理工",
     "terminal.exchange": "> 暑期交流：UC Berkeley / 可持续城市",
     "terminal.travel": "> 旅行日志：30 个国家已索引",
@@ -340,18 +212,17 @@ const translations = {
     "app.aria": "网站模块",
     "app.story": "经历",
     "app.work": "项目",
-    "app.atlas": "照片",
     "app.thinker": "思考",
     "app.resume": "简历",
     "story.kicker": "01 / 我是探索者",
-    "story.title": "经历是地图，照片是坐标。",
+    "story.title": "经历是地图，路线还在展开。",
     "story.body": "这里收集我的就读经历、旅行、生活档案，以及我通过设计不断展开的世界。",
     "story.fact.mode.label": "当前模式",
     "story.fact.mode.value": "探索者",
     "story.fact.goal.label": "网站目标",
     "story.fact.goal.value": "60 秒认识我",
     "story.fact.archive.label": "档案",
-    "story.fact.archive.value": "经历 / 项目 / 照片 / 生活",
+    "story.fact.archive.value": "经历 / 项目 / 生活",
     "timeline.kicker": "02 / 时间线",
     "timeline.title": "人生不是一张表，是一条可展开的线。",
     "timeline.site.title": "zhangsiyang.co 上线",
@@ -359,7 +230,7 @@ const translations = {
     "timeline.project.title": "经历与项目节点",
     "timeline.project.body": "这里会放学习、工作、项目、课程、竞赛，以及任何值得被看到的转折。",
     "timeline.travel.title": "旅行和生活档案",
-    "timeline.travel.body": "把大量照片变成有节奏的视觉故事，而不是普通网盘相册。",
+    "timeline.travel.body": "这里以后只放真正选好的旅行故事和照片，不再临时堆图。",
     "work.kicker": "03 / 我是设计者",
     "work.title": "个人项目",
     "work.menu.aria": "作品目录",
@@ -368,26 +239,12 @@ const translations = {
     "work.next": "下一页",
     "work.zoom": "放大浏览",
     "work.close": "关闭",
-    "atlas.kicker": "04 / 我是探索者",
-    "atlas.title": "照片地图",
-    "atlas.body": "一个持续生长的旅行档案：风景优先，但当地点和重要的人同时成立，记忆也必须进入画面。",
-    "atlas.count.label": "当前精选",
-    "atlas.memory.label": "筛选规则",
-    "atlas.memory.value": "地标、风景，以及有意义的人。",
-    "atlas.filters.aria": "照片筛选",
-    "atlas.filter.all": "全部",
-    "atlas.filter.landscape": "风景",
-    "atlas.filter.memory": "人物 / 记忆",
-    "atlas.prev": "上一张照片",
-    "atlas.next": "下一张照片",
-    "atlas.type.landscape": "风景",
-    "atlas.type.memory": "人物 / 记忆",
-    "thinker.kicker": "05 / 我是思考者",
+    "thinker.kicker": "04 / 我是思考者",
     "thinker.title": "个人思考 / Life Notes",
     "thinker.signature.label": "Keep Thinking / 中文名",
     "thinker.signature.meaning": "思是思考，洋是如海洋般开放与包容。",
     "thinker.body": "建筑、城市、旅行、学习、人生分享，都会慢慢归档到这里。",
-    "resume.kicker": "06 / 简历",
+    "resume.kicker": "05 / 简历",
     "resume.title": "简历界面，先搭好。",
     "resume.body": "这里会变成我的简历系统：教育背景、工作经历、项目经历、技能、奖项、证书和下载入口。",
     "resume.button": "查看简历素材位",
@@ -397,7 +254,7 @@ const translations = {
     "resume.experience": "待填：公司/项目、职位、贡献、结果",
     "resume.skills.label": "技能",
     "resume.skills": "待填：语言、工具、AI 协作能力、作品链接",
-    "contact.kicker": "07 / 联系",
+    "contact.kicker": "06 / 联系",
     "contact.title": "联系",
     "contact.body": "如果想聊合作、作品集、旅行、设计笔记或新的想法，可以通过这里联系我。",
     "contact.email.label": "邮箱",
@@ -416,8 +273,6 @@ const translations = {
 
 let activeDesignerWork = 0;
 let activeDesignerPage = 0;
-let activeTravelFilter = "all";
-let activeTravelIndex = 0;
 let currentLanguage = "en";
 
 function workPages(slug, count) {
@@ -464,8 +319,6 @@ function applyLanguage(language) {
   });
 
   updateDesignerViewer();
-  renderTravelGallery();
-  updateTravelLightbox();
 }
 
 function routeFromHash() {
@@ -702,108 +555,6 @@ function loadPhotoFrames() {
   });
 }
 
-function filteredTravelPhotos() {
-  if (activeTravelFilter === "all") return travelPhotos;
-  return travelPhotos.filter((photo) => photo.type === activeTravelFilter);
-}
-
-function updateAtlasCount(photos = filteredTravelPhotos()) {
-  if (!atlasCount) return;
-  const countries = new Set(photos.map((photo) => localizedValue(photo.country)));
-  const photoWord = currentLanguage === "zh" ? "张照片" : photos.length === 1 ? "photo" : "photos";
-  const countryWord = currentLanguage === "zh" ? "个国家" : countries.size === 1 ? "country" : "countries";
-
-  atlasCount.textContent = currentLanguage === "zh"
-    ? `${photos.length} ${photoWord} / ${countries.size} ${countryWord}`
-    : `${photos.length} ${photoWord} / ${countries.size} ${countryWord}`;
-}
-
-function renderTravelGallery() {
-  if (!travelGallery) return;
-  const photos = filteredTravelPhotos();
-  travelGallery.innerHTML = "";
-  updateAtlasCount(photos);
-
-  travelFilterButtons.forEach((button) => {
-    const isActive = button.dataset.travelFilter === activeTravelFilter;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-
-  photos.forEach((photo, index) => {
-    const figure = document.createElement("figure");
-    figure.className = `photo-tile photo-frame is-visible ${photo.size || ""} ${photo.captionSide ? `caption-${photo.captionSide}` : ""}`.trim();
-
-    const button = document.createElement("button");
-    button.className = "photo-open";
-    button.type = "button";
-    button.setAttribute("aria-label", `${localizedValue(photo.title)} / ${localizedValue(photo.place)}`);
-    button.addEventListener("click", () => openTravelLightbox(index));
-
-    const image = document.createElement("img");
-    image.src = photo.src;
-    image.alt = `${localizedValue(photo.title)} - ${localizedValue(photo.place)}`;
-    image.loading = index < 3 ? "eager" : "lazy";
-    if (photo.position) image.style.objectPosition = photo.position;
-
-    const caption = document.createElement("figcaption");
-    const tag = document.createElement("span");
-    tag.textContent = t(`atlas.type.${photo.type}`);
-    const title = document.createElement("strong");
-    title.textContent = localizedValue(photo.title);
-    const place = document.createElement("em");
-    place.textContent = `${localizedValue(photo.country)} / ${localizedValue(photo.place)}`;
-    const note = document.createElement("small");
-    note.textContent = localizedValue(photo.caption);
-
-    caption.append(tag, title, place, note);
-    button.append(image, caption);
-    figure.append(button);
-    travelGallery.append(figure);
-  });
-}
-
-function updateTravelLightbox() {
-  if (!travelLightboxImage || !travelLightboxTitle || !travelLightboxPlace || !travelLightboxIndex) return;
-  const photos = filteredTravelPhotos();
-  if (!photos.length) return;
-  activeTravelIndex = Math.min(Math.max(activeTravelIndex, 0), photos.length - 1);
-  const photo = photos[activeTravelIndex];
-  const title = localizedValue(photo.title);
-  const place = `${localizedValue(photo.country)} / ${localizedValue(photo.place)}`;
-
-  travelLightboxImage.src = photo.src;
-  travelLightboxImage.alt = `${title} - ${place}`;
-  travelLightboxTitle.textContent = title;
-  travelLightboxPlace.textContent = place;
-  travelLightboxIndex.textContent = `${formatNumber(activeTravelIndex + 1)} / ${formatNumber(photos.length)}`;
-}
-
-function openTravelLightbox(index) {
-  if (!travelLightbox) return;
-  activeTravelIndex = index;
-  updateTravelLightbox();
-  travelLightbox.hidden = false;
-  body.classList.add("lightbox-locked");
-  requestAnimationFrame(() => travelLightbox.classList.add("is-active"));
-}
-
-function closeTravelLightbox() {
-  if (!travelLightbox) return;
-  travelLightbox.classList.remove("is-active");
-  body.classList.remove("lightbox-locked");
-  window.setTimeout(() => {
-    travelLightbox.hidden = true;
-  }, 220);
-}
-
-function moveTravelPhoto(direction) {
-  const photos = filteredTravelPhotos();
-  if (!photos.length) return;
-  activeTravelIndex = (activeTravelIndex + direction + photos.length) % photos.length;
-  updateTravelLightbox();
-}
-
 function formatNumber(value) {
   return String(value).padStart(2, "0");
 }
@@ -905,33 +656,11 @@ designerLightbox?.addEventListener("click", (event) => {
   if (event.target === designerLightbox) closeDesignerLightbox();
 });
 
-travelFilterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeTravelFilter = button.dataset.travelFilter || "all";
-    activeTravelIndex = 0;
-    renderTravelGallery();
-    updateTravelLightbox();
-  });
-});
-
-travelCloseLightbox?.addEventListener("click", closeTravelLightbox);
-travelPrevPhoto?.addEventListener("click", () => moveTravelPhoto(-1));
-travelNextPhoto?.addEventListener("click", () => moveTravelPhoto(1));
-travelLightbox?.addEventListener("click", (event) => {
-  if (event.target === travelLightbox) closeTravelLightbox();
-});
-
 document.addEventListener("keydown", (event) => {
   if (designerLightbox && !designerLightbox.hidden) {
     if (event.key === "Escape") closeDesignerLightbox();
     if (event.key === "ArrowLeft") moveDesignerPage(-1);
     if (event.key === "ArrowRight") moveDesignerPage(1);
-  }
-
-  if (travelLightbox && !travelLightbox.hidden) {
-    if (event.key === "Escape") closeTravelLightbox();
-    if (event.key === "ArrowLeft") moveTravelPhoto(-1);
-    if (event.key === "ArrowRight") moveTravelPhoto(1);
   }
 });
 
