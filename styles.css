@@ -2365,21 +2365,94 @@ dd,
   width: min(1320px, calc(100% - 28px));
 }
 
+.atlas .section-label p:last-child {
+  max-width: 720px;
+}
+
+.atlas-console {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.atlas-console div {
+  min-height: 104px;
+  padding: 18px;
+  border: 1px solid rgba(255, 249, 232, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(72, 244, 255, 0.12), transparent 42%),
+    rgba(255, 249, 232, 0.055);
+}
+
+.atlas-console span,
+.atlas-filter,
+.photo-tile figcaption span,
+.travel-lightbox-meta span {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.atlas-console span {
+  display: block;
+  color: var(--cyan);
+}
+
+.atlas-console strong {
+  display: block;
+  max-width: 36ch;
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: clamp(1rem, 1.8vw, 1.42rem);
+  line-height: 1.12;
+}
+
+.atlas-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.atlas-filter {
+  min-height: 42px;
+  padding: 0 16px;
+  color: var(--cream);
+  background: rgba(255, 249, 232, 0.06);
+  border: 1px solid rgba(255, 249, 232, 0.18);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.atlas-filter:hover,
+.atlas-filter.is-active {
+  color: #05050c;
+  background: var(--acid);
+  border-color: var(--acid);
+  transform: translateY(-2px);
+}
+
 .photo-wall {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: 218px;
+  grid-auto-rows: 238px;
   gap: 14px;
   margin-top: 36px;
 }
 
 .photo-tile {
   position: relative;
-  min-height: 218px;
+  min-height: 238px;
   margin: 0;
 }
 
 .photo-frame {
+  isolation: isolate;
   overflow: hidden;
   border: 2px solid rgba(255, 249, 232, 0.2);
   border-radius: 8px;
@@ -2392,15 +2465,63 @@ dd,
   box-shadow: var(--shadow);
 }
 
-.photo-frame::before {
+.photo-open {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.photo-open img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.02);
+  transition: transform 650ms ease, filter 650ms ease;
+}
+
+.photo-frame::before,
+.photo-frame::after {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   content: "";
+}
+
+.photo-frame::before {
   background:
-    linear-gradient(transparent 0 70%, rgba(0, 0, 0, 0.76)),
+    linear-gradient(transparent 0 45%, rgba(0, 0, 0, 0.38) 70%, rgba(0, 0, 0, 0.9)),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px 14px);
+}
+
+.photo-frame::after {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(72, 244, 255, 0.28), transparent 24%),
+    radial-gradient(circle at 90% 92%, rgba(255, 66, 214, 0.24), transparent 26%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.photo-frame:hover .photo-open img {
+  filter: saturate(1.18) contrast(1.08);
+  transform: scale(1.075);
+}
+
+.photo-frame:hover::after {
+  opacity: 1;
 }
 
 .photo-tile.large {
@@ -2418,12 +2539,157 @@ dd,
 
 .photo-tile figcaption {
   position: absolute;
+  right: 14px;
+  bottom: 14px;
   left: 14px;
-  bottom: 12px;
   z-index: 2;
+  display: grid;
+  gap: 6px;
   color: var(--ink);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 12px;
+  pointer-events: none;
+}
+
+.photo-tile figcaption span {
+  width: fit-content;
+  padding: 5px 7px;
+  color: #05050c;
+  background: var(--acid);
+  border-radius: 4px;
+}
+
+.photo-tile figcaption strong {
+  max-width: 16ch;
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 2.1vw, 2.65rem);
+  line-height: 0.92;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+}
+
+.photo-tile figcaption em,
+.photo-tile figcaption small {
+  max-width: 36ch;
+  color: rgba(255, 249, 232, 0.82);
+  font-style: normal;
+  font-size: 0.84rem;
+  line-height: 1.32;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+}
+
+.photo-tile figcaption em {
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-weight: 900;
+}
+
+.photo-tile.caption-right figcaption {
+  right: 16px;
+  left: auto;
+  width: min(46%, 360px);
+  justify-items: start;
+}
+
+.travel-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: grid;
+  place-items: center;
+  padding: 72px 74px 34px;
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 22%), rgba(72, 244, 255, 0.2), transparent 26%),
+    linear-gradient(135deg, rgba(255, 66, 214, 0.18), rgba(4, 5, 9, 0.97) 42%, rgba(6, 8, 255, 0.46));
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.travel-lightbox[hidden] {
+  display: none;
+}
+
+.travel-lightbox.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.travel-lightbox img {
+  max-width: min(94vw, 1500px);
+  max-height: 82vh;
+  object-fit: contain;
+  border: 1px solid rgba(255, 249, 232, 0.18);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.travel-lightbox-close,
+.travel-lightbox-nav {
+  position: fixed;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  color: var(--acid);
+  font-family: var(--mono);
+  font-size: 2rem;
+  line-height: 1;
+  background: rgba(9, 10, 16, 0.78);
+  border: 1px solid rgba(255, 249, 232, 0.16);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(72, 244, 255, 0.12);
+}
+
+.travel-lightbox-close {
+  top: 18px;
+  right: 20px;
+}
+
+.travel-lightbox-nav.prev {
+  left: 20px;
+}
+
+.travel-lightbox-nav.next {
+  right: 20px;
+}
+
+.travel-lightbox-close:hover,
+.travel-lightbox-nav:hover {
+  border-color: rgba(186, 255, 41, 0.7);
+  box-shadow: 0 0 28px rgba(186, 255, 41, 0.22), 6px 6px 0 rgba(255, 66, 214, 0.16);
+  transform: translate(-1px, -1px);
+}
+
+.travel-lightbox-meta {
+  position: fixed;
+  right: 20px;
+  bottom: 18px;
+  left: 20px;
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  text-align: center;
+}
+
+.travel-lightbox-meta span {
+  color: var(--gold);
+}
+
+.travel-lightbox-meta strong {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 2.4vw, 2.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.travel-lightbox-meta em {
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.78rem;
   font-weight: 900;
 }
 
@@ -2509,7 +2775,7 @@ body[data-view="home"] footer {
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: none;
   }
 }
 
@@ -2778,6 +3044,14 @@ body[data-view="home"] footer {
 
   .photo-wall {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .atlas-console {
+    grid-template-columns: 1fr;
+  }
+
+  .travel-lightbox {
+    padding-inline: 58px;
   }
 
   .contact-actions {
@@ -3091,11 +3365,57 @@ body[data-view="home"] footer {
     grid-auto-rows: 260px;
   }
 
+  .atlas-filters {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   .photo-tile.large,
   .photo-tile.wide,
   .photo-tile.tall {
     grid-column: span 1;
     grid-row: span 1;
+  }
+
+  .photo-tile figcaption strong {
+    max-width: 18ch;
+    font-size: 1.55rem;
+  }
+
+  .photo-tile figcaption small {
+    display: none;
+  }
+
+  .photo-tile.caption-right figcaption {
+    right: 14px;
+    left: 14px;
+    width: auto;
+  }
+
+  .travel-lightbox {
+    padding: 62px 10px 94px;
+  }
+
+  .travel-lightbox img {
+    max-width: 100%;
+    max-height: 72vh;
+  }
+
+  .travel-lightbox-nav {
+    bottom: 24px;
+    top: auto;
+  }
+
+  .travel-lightbox-nav.prev {
+    left: 18px;
+  }
+
+  .travel-lightbox-nav.next {
+    right: 18px;
+  }
+
+  .travel-lightbox-meta {
+    bottom: 78px;
   }
 
   footer {

@@ -11,7 +11,7 @@
     <meta property="og:url" content="https://zhangsiyang.co/">
     <meta name="theme-color" content="#0608ff">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=thinker-handwriting-name-20260605">
+    <link rel="stylesheet" href="styles.css?v=explorer-photo-atlas-20260608b">
   </head>
   <body class="is-starting boot-locked" data-view="home">
     <section class="boot-screen" id="bootScreen" aria-labelledby="bootTitle">
@@ -432,23 +432,34 @@
         <div class="section-label wide" data-reveal>
           <p class="kicker" data-i18n="atlas.kicker">04 / I am an Explorer</p>
           <h2 data-i18n="atlas.title">Photo Atlas</h2>
+          <p data-i18n="atlas.body">A living travel archive: landscapes first, but memory matters when the place and the people belong together.</p>
         </div>
-        <div class="photo-wall">
-          <figure class="photo-tile large photo-frame" data-src="assets/photos/travel-01.jpg" data-reveal>
-            <figcaption data-i18n="atlas.travel">TRAVEL / cover</figcaption>
-          </figure>
-          <figure class="photo-tile photo-frame" data-src="assets/photos/life-01.jpg" data-reveal>
-            <figcaption data-i18n="atlas.life">LIFE / moments</figcaption>
-          </figure>
-          <figure class="photo-tile tall photo-frame" data-src="assets/photos/city-01.jpg" data-reveal>
-            <figcaption data-i18n="atlas.city">CITY / map</figcaption>
-          </figure>
-          <figure class="photo-tile photo-frame" data-src="assets/photos/food-01.jpg" data-reveal>
-            <figcaption data-i18n="atlas.food">TABLE / food</figcaption>
-          </figure>
-          <figure class="photo-tile wide photo-frame" data-src="assets/photos/friends-01.jpg" data-reveal>
-            <figcaption data-i18n="atlas.people">PEOPLE / friends</figcaption>
-          </figure>
+        <div class="atlas-console" data-reveal>
+          <div>
+            <span data-i18n="atlas.count.label">CURRENT EDIT</span>
+            <strong id="atlasCount">10 photos / 3 countries</strong>
+          </div>
+          <div>
+            <span data-i18n="atlas.memory.label">MEMORY RULE</span>
+            <strong data-i18n="atlas.memory.value">Landmarks, landscapes, and meaningful people.</strong>
+          </div>
+        </div>
+        <div class="atlas-filters" aria-label="Photo filters" data-i18n-aria="atlas.filters.aria" data-reveal>
+          <button class="atlas-filter is-active" type="button" data-travel-filter="all" data-i18n="atlas.filter.all">All</button>
+          <button class="atlas-filter" type="button" data-travel-filter="landscape" data-i18n="atlas.filter.landscape">Landscape</button>
+          <button class="atlas-filter" type="button" data-travel-filter="memory" data-i18n="atlas.filter.memory">People / Memory</button>
+        </div>
+        <div class="photo-wall" id="travelGallery" aria-live="polite"></div>
+        <div class="travel-lightbox" id="travelLightbox" hidden>
+          <button class="travel-lightbox-close" id="travelCloseLightbox" type="button" aria-label="Close" title="Close" data-i18n-aria="work.close" data-i18n-title="work.close">×</button>
+          <button class="travel-lightbox-nav prev" id="travelPrevPhoto" type="button" aria-label="Previous photo" title="Previous photo" data-i18n-aria="atlas.prev" data-i18n-title="atlas.prev">‹</button>
+          <img id="travelLightboxImage" src="assets/travel/indonesia/nusa-penida-kelingking-cliff.jpg" alt="Travel photo enlarged">
+          <button class="travel-lightbox-nav next" id="travelNextPhoto" type="button" aria-label="Next photo" title="Next photo" data-i18n-aria="atlas.next" data-i18n-title="atlas.next">›</button>
+          <div class="travel-lightbox-meta">
+            <span id="travelLightboxIndex">01 / 10</span>
+            <strong id="travelLightboxTitle">Kelingking Beach from above</strong>
+            <em id="travelLightboxPlace">Indonesia / Nusa Penida</em>
+          </div>
         </div>
       </section>
 
@@ -538,6 +549,6 @@
       <span data-i18n="footer.built">Built for zhangsiyang.co</span>
     </footer>
 
-    <script src="script.js?v=thinker-handwriting-name-20260605"></script>
+    <script src="script.js?v=explorer-photo-atlas-20260608b"></script>
   </body>
 </html>

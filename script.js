@@ -25,8 +25,22 @@ const designerLightboxImage = document.querySelector("#designerLightboxImage");
 const designerLightboxTitle = document.querySelector("#designerLightboxTitle");
 const designerLightboxPage = document.querySelector("#designerLightboxPage");
 const designerCloseLightbox = document.querySelector("#designerCloseLightbox");
+const travelGallery = document.querySelector("#travelGallery");
+const atlasCount = document.querySelector("#atlasCount");
+const travelFilterButtons = [...document.querySelectorAll("[data-travel-filter]")];
+const travelLightbox = document.querySelector("#travelLightbox");
+const travelLightboxImage = document.querySelector("#travelLightboxImage");
+const travelLightboxTitle = document.querySelector("#travelLightboxTitle");
+const travelLightboxPlace = document.querySelector("#travelLightboxPlace");
+const travelLightboxIndex = document.querySelector("#travelLightboxIndex");
+const travelCloseLightbox = document.querySelector("#travelCloseLightbox");
+const travelPrevPhoto = document.querySelector("#travelPrevPhoto");
+const travelNextPhoto = document.querySelector("#travelNextPhoto");
 const helloSlides = [...document.querySelectorAll(".hello-slide")];
 const helloSvgs = [...document.querySelectorAll(".hello-svg")];
+if (travelLightbox && travelLightbox.parentElement !== body) {
+  body.appendChild(travelLightbox);
+}
 const helloSequence = [
   { label: "English", status: "English / Apple-style path writing", hold: 4300 },
   { label: "中文", status: "中文 / 正在写入个人世界", hold: 3200 },
@@ -64,6 +78,98 @@ const designerWorks = [
     title: { en: "Steel Structure Stair Design", zh: "钢结构楼梯设计" },
     subtitle: { en: "钢结构楼梯设计", zh: "Steel Structure Stair Design" },
     pages: workPages("steel-stair-design", 2)
+  }
+];
+const travelPhotos = [
+  {
+    src: "assets/travel/indonesia/nusa-penida-kelingking-cliff.jpg",
+    type: "landscape",
+    size: "large",
+    country: { en: "Indonesia", zh: "印度尼西亚" },
+    place: { en: "Nusa Penida / Kelingking Beach", zh: "佩尼达岛 / 精灵坠崖" },
+    title: { en: "Kelingking Beach from above", zh: "俯瞰精灵坠崖" },
+    caption: { en: "The cliff that defines the Bali memory.", zh: "巴厘岛记忆里最有辨识度的海崖。" }
+  },
+  {
+    src: "assets/travel/indonesia/kelingking-couple-03.jpg",
+    type: "memory",
+    size: "wide",
+    position: "center 34%",
+    captionSide: "right",
+    country: { en: "Indonesia", zh: "印度尼西亚" },
+    place: { en: "Nusa Penida / Kelingking Beach", zh: "佩尼达岛 / 精灵坠崖" },
+    title: { en: "Together at Kelingking", zh: "精灵坠崖前的合影" },
+    caption: { en: "A landmark is stronger when the people belong in the frame.", zh: "有些地标，和重要的人一起出现才完整。" }
+  },
+  {
+    src: "assets/travel/indonesia/nusa-penida-coastline.jpg",
+    type: "landscape",
+    size: "wide",
+    country: { en: "Indonesia", zh: "印度尼西亚" },
+    place: { en: "Nusa Penida / Broken Beach coastline", zh: "佩尼达岛 / 海岸线" },
+    title: { en: "Blue edge of Nusa Penida", zh: "佩尼达岛的蓝色边界" },
+    caption: { en: "Rock, wind, and hard tropical light.", zh: "礁石、海风和热带强光。" }
+  },
+  {
+    src: "assets/travel/indonesia/kelingking-couple-02.jpg",
+    type: "memory",
+    size: "tall",
+    position: "center 35%",
+    country: { en: "Indonesia", zh: "印度尼西亚" },
+    place: { en: "Nusa Penida / Kelingking viewpoint", zh: "佩尼达岛 / 精灵坠崖观景台" },
+    title: { en: "A shared horizon", zh: "共同望向海面" },
+    caption: { en: "People and place kept in the same breath.", zh: "把人和地点放进同一段记忆里。" }
+  },
+  {
+    src: "assets/travel/indonesia/kelingking-couple-01.jpg",
+    type: "memory",
+    position: "center 34%",
+    captionSide: "right",
+    country: { en: "Indonesia", zh: "印度尼西亚" },
+    place: { en: "Nusa Penida / Kelingking Beach", zh: "佩尼达岛 / 精灵坠崖" },
+    title: { en: "Cliffside memory", zh: "海崖边的纪念" },
+    caption: { en: "Not a random selfie: the place is the story.", zh: "不是随手自拍，地点本身就是故事。" }
+  },
+  {
+    src: "assets/travel/indonesia/nusa-penida-memory-wide.jpg",
+    type: "landscape",
+    country: { en: "Indonesia", zh: "印度尼西亚" },
+    place: { en: "Nusa Penida / sea cliff", zh: "佩尼达岛 / 海崖" },
+    title: { en: "Small figures, huge coast", zh: "人在海岸前变小" },
+    caption: { en: "A travel scale shift: body, cliff, ocean.", zh: "身体、海崖、海洋之间的尺度变化。" }
+  },
+  {
+    src: "assets/travel/uae/dubai-fountain-skyline.jpg",
+    type: "landscape",
+    size: "wide",
+    country: { en: "United Arab Emirates", zh: "阿联酋" },
+    place: { en: "Dubai / Dubai Fountain", zh: "迪拜 / 迪拜喷泉" },
+    title: { en: "Fountain under towers", zh: "高塔下的喷泉" },
+    caption: { en: "A city spectacle built from glass, water, and phones.", zh: "玻璃、水幕和手机屏幕组成的城市景观。" }
+  },
+  {
+    src: "assets/travel/uae/dubai-fountain-wide.jpg",
+    type: "landscape",
+    country: { en: "United Arab Emirates", zh: "阿联酋" },
+    place: { en: "Dubai / Downtown Dubai", zh: "迪拜 / 市中心" },
+    title: { en: "Downtown at sunset", zh: "日落时的迪拜市中心" },
+    caption: { en: "The skyline turns into a stage.", zh: "天际线像被推上舞台。" }
+  },
+  {
+    src: "assets/travel/cambodia/phnom-penh-street-day.jpg",
+    type: "landscape",
+    country: { en: "Cambodia", zh: "柬埔寨" },
+    place: { en: "Phnom Penh / street corner", zh: "金边 / 街角" },
+    title: { en: "Street wires and orchids", zh: "电线与花" },
+    caption: { en: "A city detail with tropical pressure.", zh: "热带城市里很有现场感的一角。" }
+  },
+  {
+    src: "assets/travel/cambodia/phnom-penh-street-night.jpg",
+    type: "landscape",
+    country: { en: "Cambodia", zh: "柬埔寨" },
+    place: { en: "Phnom Penh / evening street", zh: "金边 / 夜晚街道" },
+    title: { en: "Phnom Penh after dark", zh: "夜色里的金边" },
+    caption: { en: "Traffic, neon, and humid dusk.", zh: "车流、霓虹和潮湿的黄昏。" }
   }
 ];
 
@@ -145,11 +251,18 @@ const translations = {
     "work.close": "Close",
     "atlas.kicker": "04 / I am an Explorer",
     "atlas.title": "Photo Atlas",
-    "atlas.travel": "TRAVEL / cover",
-    "atlas.life": "LIFE / moments",
-    "atlas.city": "CITY / map",
-    "atlas.food": "TABLE / food",
-    "atlas.people": "PEOPLE / friends",
+    "atlas.body": "A living travel archive: landscapes first, but memory matters when the place and the people belong together.",
+    "atlas.count.label": "CURRENT EDIT",
+    "atlas.memory.label": "MEMORY RULE",
+    "atlas.memory.value": "Landmarks, landscapes, and meaningful people.",
+    "atlas.filters.aria": "Photo filters",
+    "atlas.filter.all": "All",
+    "atlas.filter.landscape": "Landscape",
+    "atlas.filter.memory": "People / Memory",
+    "atlas.prev": "Previous photo",
+    "atlas.next": "Next photo",
+    "atlas.type.landscape": "Landscape",
+    "atlas.type.memory": "People / Memory",
     "thinker.kicker": "05 / I am a Thinker",
     "thinker.title": "Life Notes",
     "thinker.signature.label": "Keep Thinking / Chinese name",
@@ -257,11 +370,18 @@ const translations = {
     "work.close": "关闭",
     "atlas.kicker": "04 / 我是探索者",
     "atlas.title": "照片地图",
-    "atlas.travel": "旅行 / 封面",
-    "atlas.life": "生活 / 片段",
-    "atlas.city": "城市 / 地图",
-    "atlas.food": "餐桌 / 食物",
-    "atlas.people": "朋友 / 人物",
+    "atlas.body": "一个持续生长的旅行档案：风景优先，但当地点和重要的人同时成立，记忆也必须进入画面。",
+    "atlas.count.label": "当前精选",
+    "atlas.memory.label": "筛选规则",
+    "atlas.memory.value": "地标、风景，以及有意义的人。",
+    "atlas.filters.aria": "照片筛选",
+    "atlas.filter.all": "全部",
+    "atlas.filter.landscape": "风景",
+    "atlas.filter.memory": "人物 / 记忆",
+    "atlas.prev": "上一张照片",
+    "atlas.next": "下一张照片",
+    "atlas.type.landscape": "风景",
+    "atlas.type.memory": "人物 / 记忆",
     "thinker.kicker": "05 / 我是思考者",
     "thinker.title": "个人思考 / Life Notes",
     "thinker.signature.label": "Keep Thinking / 中文名",
@@ -296,6 +416,8 @@ const translations = {
 
 let activeDesignerWork = 0;
 let activeDesignerPage = 0;
+let activeTravelFilter = "all";
+let activeTravelIndex = 0;
 let currentLanguage = "en";
 
 function workPages(slug, count) {
@@ -342,6 +464,8 @@ function applyLanguage(language) {
   });
 
   updateDesignerViewer();
+  renderTravelGallery();
+  updateTravelLightbox();
 }
 
 function routeFromHash() {
@@ -460,6 +584,7 @@ function releaseBootScreen() {
 
   window.setTimeout(() => {
     bootScreen.remove();
+    window.scrollTo({ top: 0, behavior: "auto" });
     toast(t("toast.online"));
   }, 720);
 }
@@ -487,7 +612,11 @@ function runBootIntro() {
   function exitIntro() {
     released = true;
     window.clearTimeout(timer);
+    window.scrollTo({ top: 0, behavior: "auto" });
     releaseBootScreen();
+    window.setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }, 1040);
   }
 
   function restartAnimatedParts(container) {
@@ -571,6 +700,108 @@ function loadPhotoFrames() {
     };
     image.src = src;
   });
+}
+
+function filteredTravelPhotos() {
+  if (activeTravelFilter === "all") return travelPhotos;
+  return travelPhotos.filter((photo) => photo.type === activeTravelFilter);
+}
+
+function updateAtlasCount(photos = filteredTravelPhotos()) {
+  if (!atlasCount) return;
+  const countries = new Set(photos.map((photo) => localizedValue(photo.country)));
+  const photoWord = currentLanguage === "zh" ? "张照片" : photos.length === 1 ? "photo" : "photos";
+  const countryWord = currentLanguage === "zh" ? "个国家" : countries.size === 1 ? "country" : "countries";
+
+  atlasCount.textContent = currentLanguage === "zh"
+    ? `${photos.length} ${photoWord} / ${countries.size} ${countryWord}`
+    : `${photos.length} ${photoWord} / ${countries.size} ${countryWord}`;
+}
+
+function renderTravelGallery() {
+  if (!travelGallery) return;
+  const photos = filteredTravelPhotos();
+  travelGallery.innerHTML = "";
+  updateAtlasCount(photos);
+
+  travelFilterButtons.forEach((button) => {
+    const isActive = button.dataset.travelFilter === activeTravelFilter;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  photos.forEach((photo, index) => {
+    const figure = document.createElement("figure");
+    figure.className = `photo-tile photo-frame is-visible ${photo.size || ""} ${photo.captionSide ? `caption-${photo.captionSide}` : ""}`.trim();
+
+    const button = document.createElement("button");
+    button.className = "photo-open";
+    button.type = "button";
+    button.setAttribute("aria-label", `${localizedValue(photo.title)} / ${localizedValue(photo.place)}`);
+    button.addEventListener("click", () => openTravelLightbox(index));
+
+    const image = document.createElement("img");
+    image.src = photo.src;
+    image.alt = `${localizedValue(photo.title)} - ${localizedValue(photo.place)}`;
+    image.loading = index < 3 ? "eager" : "lazy";
+    if (photo.position) image.style.objectPosition = photo.position;
+
+    const caption = document.createElement("figcaption");
+    const tag = document.createElement("span");
+    tag.textContent = t(`atlas.type.${photo.type}`);
+    const title = document.createElement("strong");
+    title.textContent = localizedValue(photo.title);
+    const place = document.createElement("em");
+    place.textContent = `${localizedValue(photo.country)} / ${localizedValue(photo.place)}`;
+    const note = document.createElement("small");
+    note.textContent = localizedValue(photo.caption);
+
+    caption.append(tag, title, place, note);
+    button.append(image, caption);
+    figure.append(button);
+    travelGallery.append(figure);
+  });
+}
+
+function updateTravelLightbox() {
+  if (!travelLightboxImage || !travelLightboxTitle || !travelLightboxPlace || !travelLightboxIndex) return;
+  const photos = filteredTravelPhotos();
+  if (!photos.length) return;
+  activeTravelIndex = Math.min(Math.max(activeTravelIndex, 0), photos.length - 1);
+  const photo = photos[activeTravelIndex];
+  const title = localizedValue(photo.title);
+  const place = `${localizedValue(photo.country)} / ${localizedValue(photo.place)}`;
+
+  travelLightboxImage.src = photo.src;
+  travelLightboxImage.alt = `${title} - ${place}`;
+  travelLightboxTitle.textContent = title;
+  travelLightboxPlace.textContent = place;
+  travelLightboxIndex.textContent = `${formatNumber(activeTravelIndex + 1)} / ${formatNumber(photos.length)}`;
+}
+
+function openTravelLightbox(index) {
+  if (!travelLightbox) return;
+  activeTravelIndex = index;
+  updateTravelLightbox();
+  travelLightbox.hidden = false;
+  body.classList.add("lightbox-locked");
+  requestAnimationFrame(() => travelLightbox.classList.add("is-active"));
+}
+
+function closeTravelLightbox() {
+  if (!travelLightbox) return;
+  travelLightbox.classList.remove("is-active");
+  body.classList.remove("lightbox-locked");
+  window.setTimeout(() => {
+    travelLightbox.hidden = true;
+  }, 220);
+}
+
+function moveTravelPhoto(direction) {
+  const photos = filteredTravelPhotos();
+  if (!photos.length) return;
+  activeTravelIndex = (activeTravelIndex + direction + photos.length) % photos.length;
+  updateTravelLightbox();
 }
 
 function formatNumber(value) {
@@ -674,11 +905,34 @@ designerLightbox?.addEventListener("click", (event) => {
   if (event.target === designerLightbox) closeDesignerLightbox();
 });
 
+travelFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    activeTravelFilter = button.dataset.travelFilter || "all";
+    activeTravelIndex = 0;
+    renderTravelGallery();
+    updateTravelLightbox();
+  });
+});
+
+travelCloseLightbox?.addEventListener("click", closeTravelLightbox);
+travelPrevPhoto?.addEventListener("click", () => moveTravelPhoto(-1));
+travelNextPhoto?.addEventListener("click", () => moveTravelPhoto(1));
+travelLightbox?.addEventListener("click", (event) => {
+  if (event.target === travelLightbox) closeTravelLightbox();
+});
+
 document.addEventListener("keydown", (event) => {
-  if (!designerLightbox || designerLightbox.hidden) return;
-  if (event.key === "Escape") closeDesignerLightbox();
-  if (event.key === "ArrowLeft") moveDesignerPage(-1);
-  if (event.key === "ArrowRight") moveDesignerPage(1);
+  if (designerLightbox && !designerLightbox.hidden) {
+    if (event.key === "Escape") closeDesignerLightbox();
+    if (event.key === "ArrowLeft") moveDesignerPage(-1);
+    if (event.key === "ArrowRight") moveDesignerPage(1);
+  }
+
+  if (travelLightbox && !travelLightbox.hidden) {
+    if (event.key === "Escape") closeTravelLightbox();
+    if (event.key === "ArrowLeft") moveTravelPhoto(-1);
+    if (event.key === "ArrowRight") moveTravelPhoto(1);
+  }
 });
 
 const observer = new IntersectionObserver((entries) => {
